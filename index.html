@@ -3,152 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- ============================================================
-     .cv.html (Canvas View) 조직 표준 시안 템플릿 v2.4 (2026-09-30, v2.1 10-04 좁은 창 캔버스 폭 0 수정, v2.2 10-04 모바일: 터치 이동·핀치 확대·두 번 탭 비교·하단 시트, v2.3 10-04 양쪽 패널 접기, v2.4 10-09 상단 탭 가로 넘김·발표 시 현재 프레임만)
-     HCMG 서식 — 가이드: 화면시안_cv_가이드.md (엔진 정본은 ai-org knowledge/templates/cv/canvas.cv.html, cv-engine-sync로 동기화)
-     작성자가 바꾸는 곳은 딱 3군데:
-       1) 문서 제목(title 요소), body의 data-path / data-file
-       2) [PROJECT STYLES] 블록 (프로젝트 디자인 시스템 CSS)
-       3) [CANVAS CONTENT] 블록 (섹션 > 프레임 > 핀)
-     [CV ENGINE] 블록(크롬 CSS·스크립트)은 수정하지 않는다.
-     주의: 이 파일의 주석 안에는 꺾쇠 태그 문자열을 쓰지 않는다(조립기가 마커로 오인).
-     ============================================================ -->
 <title>나비선교회 물품후원 카드뉴스</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- ===================== [CV ENGINE] CSS — 수정 금지 ===================== -->
-<style id="cv-engine-css">
-:root{--fx-bar:#2C2C2C;--fx-panel:#fff;--fx-line:#E6E6E6;--fx-txt:#1E1E1E;--fx-sub:#7A7A7A;--fx-canvas:#E8E8E5;--fx-sel:#0D99FF;--fx-pin:#F24E1E;}
-*,*::before,*::after{box-sizing:border-box;}
-html,body{margin:0;height:100%;overflow:hidden;}
-body{font-family:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--fx-canvas);color:var(--fx-txt);-webkit-font-smoothing:antialiased;}
-.ic{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;vertical-align:middle;}
-.fx{display:grid;grid-template-rows:44px 1fr;grid-template-columns:var(--cv-lw,248px) 1fr var(--cv-rw,300px);height:100vh;}
-.fx-left{grid-column:1;grid-row:2;}.fx-vp{grid-column:2;grid-row:2;}.fx-right{grid-column:3;grid-row:2;}
-body.hide-left{--cv-lw:0px;}body.hide-right{--cv-rw:0px;}body.hide-left .fx-left,body.hide-right .fx-right{display:none;}
-.fx-top{grid-column:1/-1;background:var(--fx-bar);color:#fff;display:flex;align-items:center;padding:0 10px;gap:6px;font-size:12px;min-width:0;}
-.fx-top .logo{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;background:#3A3A3A;font-weight:800;font-size:12px;flex-shrink:0;}
-.fx-tool{height:30px;min-width:30px;padding:0 8px;border-radius:6px;border:0;background:transparent;color:#DDD;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font:inherit;flex-shrink:0;}
-.fx-tool:hover{background:#3D3D3D;color:#fff;}
-.fx-tool.on{background:var(--fx-sel);color:#fff;}
-.fx-file{margin:0 auto;display:flex;align-items:center;gap:8px;color:#BDBDBD;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
-.fx-file b{color:#fff;font-weight:600;}
-body.has-pages .fx-file{margin:0 10px 0 6px;flex:0 1 auto;}
-.fx-pages{display:none;margin:0 auto;gap:2px;background:#1E1E1E;border-radius:8px;padding:3px;flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab;}
-.fx-pages::-webkit-scrollbar{display:none;}
-.fx-pages.drag{cursor:grabbing;}.fx-pages.drag button{pointer-events:none;}
-.fx-pages.ovl{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px);mask-image:linear-gradient(90deg,transparent,#000 28px);}
-.fx-pages.ovr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);}
-.fx-pages.ovl.ovr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);}
-body.has-pages .fx-pages{display:flex;}
-.fx-pages button{border:0;background:transparent;color:#BDBDBD;height:28px;padding:0 12px;border-radius:6px;font:600 12.5px "Pretendard",sans-serif;cursor:pointer;white-space:nowrap;}
-.fx-pages button:hover{color:#fff;background:#333;}
-.fx-pages button.on{background:#fff;color:#1E1E1E;}
-.fx-pages .cmp{background:#F24E1E;color:#fff;display:inline-flex;align-items:center;gap:6px;}
-.fx-zoom{min-width:48px;text-align:center;color:#fff;flex-shrink:0;}
-.fx-present{background:var(--fx-sel);color:#fff;border:0;border-radius:6px;height:30px;padding:0 12px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center;flex-shrink:0;}
-.fx-left,.fx-right{background:var(--fx-panel);border-right:1px solid var(--fx-line);overflow:auto;font-size:12px;}
-.fx-right{border-right:0;border-left:1px solid var(--fx-line);}
-.fx-sec{padding:12px 14px;border-bottom:1px solid var(--fx-line);}
-.fx-h{font-size:11px;font-weight:700;margin:0 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.fx-h span{color:var(--fx-sub);font-weight:500;}
-.fx-page{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:5px;cursor:pointer;color:#333;}
-.fx-page:hover{background:#F2F2F2;}
-.fx-page.on{background:#F2F2F2;font-weight:700;}
-.fx-page em{margin-left:auto;font-style:normal;color:var(--fx-sub);font-family:"IBM Plex Mono",monospace;font-size:10.5px;}
-.fx-group{font-size:11px;font-weight:700;color:var(--fx-sub);padding:8px 8px 4px;display:flex;gap:6px;align-items:center;cursor:pointer;}
-.fx-group:hover{color:var(--fx-txt);}
-.fx-layer{display:flex;align-items:center;gap:8px;padding:5px 8px 5px 18px;border-radius:5px;cursor:pointer;color:#333;}
-.fx-layer:hover{background:#F2F2F2;}
-.fx-layer.on{background:#E5F4FF;color:#0A6DC2;font-weight:600;}
-.fx-layer .hash{color:#999;font-family:"IBM Plex Mono",monospace;font-size:11px;}
-.fx-kv{display:grid;grid-template-columns:22px 1fr 22px 1fr;gap:6px;align-items:center;color:var(--fx-sub);}
-.fx-kv b{font-weight:500;color:var(--fx-txt);background:#F5F5F5;border-radius:4px;padding:4px 6px;font-family:"IBM Plex Mono",monospace;font-size:11px;}
-.fx-desc{line-height:1.6;color:#333;margin:0;}
-.fx-desc p{margin:0 0 8px;}
-.fx-cmpbtn{width:100%;height:32px;border:0;border-radius:6px;background:#1E1E1E;color:#fff;font:600 12px "Pretendard",sans-serif;cursor:pointer;margin-top:10px;}
-.fx-cmpbtn:hover{background:#000;}
-.fx-note{border:1px solid var(--fx-line);border-radius:8px;padding:10px;margin-bottom:8px;cursor:pointer;transition:.15s;}
-.fx-note:hover{border-color:#BBB;}
-.fx-note.on{border-color:var(--fx-pin);box-shadow:0 0 0 3px rgba(242,78,30,.12);}
-.fx-note .t{display:flex;gap:8px;align-items:flex-start;font-weight:700;font-size:12px;line-height:1.4;}
-.fx-note .n{flex-shrink:0;width:20px;height:20px;border-radius:50% 50% 50% 4px;background:var(--fx-pin);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:700;}
-.fx-note p{margin:6px 0 0 28px;line-height:1.6;color:#444;}
-.fx-colh{font-size:11px;font-weight:800;margin:14px 0 6px;color:var(--fx-txt);display:flex;gap:6px;align-items:center;}
-.fx-colh:first-child{margin-top:0;}
-.fx-tok{display:flex;align-items:center;gap:8px;padding:4px 0;}
-.fx-tok i{width:18px;height:18px;border-radius:4px;border:1px solid rgba(0,0,0,.1);}
-.fx-tok code{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--fx-sub);}
-.fx-help{color:var(--fx-sub);line-height:1.7;}
-.fx-help kbd{font-family:"IBM Plex Mono",monospace;font-size:10px;background:#F2F2F2;border:1px solid #DDD;border-bottom-width:2px;border-radius:4px;padding:0 4px;}
-.fx-vp{position:relative;overflow:hidden;cursor:grab;touch-action:none;background:var(--fx-canvas) radial-gradient(#D2D2CE 1px,transparent 1px) 0 0/24px 24px;}
-.fx-vp.drag{cursor:grabbing;}
-.fx-world{position:absolute;left:0;top:0;transform-origin:0 0;--inv:1;}
-.fx-world.anim{transition:transform .45s cubic-bezier(.2,.8,.2,1);}
-.cv-sec{position:absolute;border-radius:calc(10px * var(--inv));background:rgba(255,255,255,.35);border:calc(1px * var(--inv)) solid rgba(0,0,0,.08);}
-.cv-sec-t{position:absolute;left:0;bottom:100%;margin-bottom:calc(8px * min(var(--inv), 8));font-size:calc(15px * min(var(--inv), 8));font-weight:800;color:#555;white-space:nowrap;display:flex;gap:calc(8px * min(var(--inv), 8));align-items:center;}
-.cv-sec-t small{font-weight:500;color:#888;font-size:calc(12px * min(var(--inv), 8));}
-.cv-anchor{position:absolute;height:0;}
-.cv-coltitle{position:absolute;left:0;bottom:0;margin-bottom:calc(34px * min(var(--inv), 8));font-size:calc(22px * min(var(--inv), 8));font-weight:900;color:#1E1E1E;white-space:nowrap;letter-spacing:-.02em;}
-.cv-rowlab{position:absolute;right:0;top:0;margin-right:calc(24px * min(var(--inv), 8));font-size:calc(15px * min(var(--inv), 8));font-weight:800;color:#666;white-space:nowrap;}
-.cv-ph{position:absolute;border:calc(2px * min(var(--inv), 8)) dashed #BDBDB8;border-radius:12px;display:grid;place-items:center;color:#8A8A85;font-size:28px;font-weight:700;background:rgba(255,255,255,.4);text-align:center;line-height:1.5;}
-.cv-ph small{display:block;font-size:18px;font-weight:500;}
-.fx-world.tiny .flabel,.fx-world.tiny .pin{visibility:hidden;}
-.frame{position:absolute;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12),0 8px 30px rgba(0,0,0,.06);}
-.frame > .clip{position:absolute;inset:0;overflow:hidden;border-radius:inherit;}
-.frame.sel{outline:calc(2px * var(--inv)) solid var(--fx-sel);}
-.frame .note{display:none;}
-.flabel{position:absolute;left:0;bottom:100%;margin-bottom:calc(6px * var(--inv));font-size:calc(12px * var(--inv));color:#666;white-space:nowrap;cursor:pointer;font-weight:500;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
-.frame.sel .flabel{color:var(--fx-sel);}
-.fbadge{display:inline-block;font-size:.85em;font-weight:700;border-radius:3px;padding:0 .35em;margin-right:.35em;color:#fff;}
-.fbadge.asis{background:#8A817A;} .fbadge.tobe,.fbadge.v1{background:#1E7B4F;} .fbadge.v2{background:#18181B;} .fbadge.v3{background:#2563EB;} .fbadge.next{background:#7B3FE4;}
-.pin{position:absolute;z-index:50;width:26px;height:26px;margin-top:-26px;border-radius:50% 50% 50% 4px;background:var(--fx-pin);color:#fff;font:700 12px/22px "Pretendard",sans-serif;text-align:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25);border:2px solid #fff;transform:scale(min(var(--inv), 3.2));transform-origin:0 100%;}
-.pin:hover{background:#D63A0B;}
-.pin.pulse{animation:pinP 1s ease 2;}
-@keyframes pinP{50%{box-shadow:0 0 0 12px rgba(242,78,30,.25);}}
-.pin .tip{position:absolute;left:30px;bottom:0;background:#1E1E1E;color:#fff;font-size:11px;font-weight:600;line-height:1.35;white-space:nowrap;padding:5px 8px;border-radius:6px;display:none;}
-.pin:hover .tip{display:block;}
-.fx-hud{position:absolute;right:12px;bottom:12px;display:flex;gap:4px;background:#fff;border:1px solid var(--fx-line);border-radius:8px;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,.08);font-size:12px;}
-.fx-hud button{border:0;background:transparent;height:28px;min-width:28px;padding:0 8px;border-radius:5px;cursor:pointer;font:inherit;color:#333;}
-.fx-hud button:hover{background:#F2F2F2;}
-.fx-pbar{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:#1E1E1E;color:#fff;border-radius:999px;padding:6px 8px;display:none;align-items:center;gap:6px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.3);white-space:nowrap;}
-.fx-pbar button{border:0;background:#333;color:#fff;border-radius:999px;height:28px;min-width:28px;cursor:pointer;font:inherit;padding:0 10px;}
-body.present .fx{grid-template-columns:0 1fr 0;grid-template-rows:0 1fr;}
-body.present .fx-top,body.present .fx-left,body.present .fx-right{display:none;}
-body.present .fx-vp{background:#1E1E1E;}
-body.present .flabel,body.present .pin,body.present .cv-sec,body.present .cv-anchor{visibility:hidden;}
-body.present .frame{visibility:hidden;}body.present .frame.pcur{visibility:visible;}
-body.present .fx-pbar{display:flex;}
-body.present .fx-hud{display:none;}
-@media (max-width:1100px){.fx-file{display:none;}}
-@media (max-width:900px){.fx{grid-template-columns:0 1fr 0;}.fx-left,.fx-right{display:none;}.fx-vp{grid-column:2;grid-row:2;}}
-/* v2.2 모바일(터치) — 캔버스가 손가락 제스처를 직접 받고, 좌우 패널은 하단 시트로 연다 */
-.fx-vp{touch-action:none;}
-.fx-scrim{display:none;}
-.fx-mtool .ic-m{display:none;}
-@media (max-width:900px){.fx-mtool .ic-d{display:none;}.fx-mtool .ic-m{display:inline;}}
-@media (max-width:900px){
-  .fx{height:100dvh;}
-  .fx-top{gap:2px;padding:0 6px;}
-  .fx-top .logo,#cvBtnPins,#cvBtnFit,.fx-zoom,#cvZOut,#cvZIn{display:none;}
-  .fx-pages{margin:0 4px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;}
-  .fx-pages::-webkit-scrollbar{display:none;}
-  .fx-pages button{padding:0 10px;height:30px;}
-  .fx-present{padding:0 9px;}
-  .fx-present span{display:none;}
-  body.sheet-left .fx-left,body.sheet-right .fx-right{display:block;position:fixed;left:0;right:0;bottom:0;max-height:64dvh;z-index:310;border:0;border-radius:14px 14px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.25);overflow:auto;padding-bottom:env(safe-area-inset-bottom);font-size:13px;}
-  body.sheet-left .fx-left::before,body.sheet-right .fx-right::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:#d0d0d0;margin:8px auto 2px;}
-  body.sheet-left .fx-scrim,body.sheet-right .fx-scrim{display:block;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.28);}
-  .fx-help{display:none;}
-  .fx-layer,.fx-page{padding-top:9px;padding-bottom:9px;}
-  .pin{width:30px;height:30px;margin-top:-30px;line-height:26px;}
-  .fx-pbar{bottom:calc(16px + env(safe-area-inset-bottom));}
-}
-body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none!important;}
-</style>
-
-<!-- ===================== [PROJECT STYLES] — 프로젝트 디자인 시스템 ===================== -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 /* 나비선교회 물품후원 카드뉴스 v0.1 — 접두어 a- 로 격리. 1080×1350
@@ -492,28 +349,17 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
 /* 수정2-c: 좌우 안쪽 여백 32(글 시작 x 128, 다른 장과 같음), 표시 줄 → 정보 칸 32(4장과 같음) */
 .e-join{padding:48px 32px;margin-top:32px;}
 </style>
+<style>
+html,body{margin:0;background:#E9ECF1;}
+.list{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 16px 48px;}
+.slot{width:min(540px,100%);aspect-ratio:1080/1350;position:relative;overflow:hidden;border-radius:12px;box-shadow:0 2px 10px rgba(8,64,144,.10);}
+.frame{position:absolute;left:0;top:0;width:1080px;height:1350px;transform-origin:0 0;}
+</style>
 </head>
-<body data-path="HCMG / 나비미니스트리 / 카드뉴스 /" data-file="나비선교회 물품후원 카드뉴스">
+<body>
+<main class="list">
 
-<!-- ===================== [CANVAS CONTENT] =====================
-  섹션(cv-sec) = 캔버스의 한 행 묶음. 속성:
-    data-page  = 페이지 탭 이름(예: 현재 / 개선안 1 / 개선안 2). 생략하면 탭 없이 한 페이지.
-    data-title / data-sub = 섹션 제목·보조설명,  data-cols = 한 줄 최대 프레임 수
-  프레임(frame) 속성:
-    data-name, data-w, data-h, data-radius, data-desc(인스펙터 설계 의도)
-    data-badge = asis / tobe / v1 / v2 / v3 / next
-    data-key   = 같은 화면을 페이지끼리 묶는 키(예: lesson). 더블클릭하면 모든 페이지의 같은 key를
-                 열(페이지)×행(데스크탑/모바일)로 나란히 보여 준다. w 600 미만 = 모바일.
-  핀(note): i 요소, class note, data-x/data-y(프레임 내 좌표), data-t(제목), 본문 = 설명
-  좌표(left/top)는 쓰지 않는다 — 엔진이 페이지별로 자동 배치한다.
-================================================================ -->
-<template id="cv-summary">
-  <div class="fx-sec"><div class="fx-h">안내</div><p class="fx-desc">나비선교회 물품후원 카드뉴스 6장(1080×1350) 공개용 사본입니다. 후원 계좌·문의 연락처·단톡방 QR은 가렸습니다.</p></div>
-</template>
-
-<div id="cv-content" hidden>
-  <section class="cv-sec" data-page="카드뉴스" data-title="나비선교회 물품후원 카드뉴스 (1080×1350 · 6장)" data-cols="3">
-    <div class="frame" data-name="A-01 표지" data-key="cover" data-w="1080" data-h="1350" data-badge="final" data-desc="확정 표지(표지 시안 B-03) 그대로. 휴대폰 속 단톡방 대화 둘레로 쇼핑백·소포·선물 상자. 제목 72/88, 로고 오른쪽 위, 부제 아래선 y=1190.">
+    <div class="frame">
       <div class="d-card">
         <div class="d-top"><div><i class="d-dot"></i><b>나비선교회</b>물품후원</div></div>
         <div class="d-kick"><i></i>새 단톡방</div>
@@ -541,7 +387,7 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
       
       
     </div>
-    <div class="frame" data-name="A-02 누구를위해" data-key="who" data-w="1080" data-h="1350" data-badge="final" data-desc="누구에게 가는지(안내) + 어떤 물품인지(그림 카드 3개). 사람·얼굴 없이 물건만. 제목 64/80(2~6장 같음).">
+    <div class="frame">
       <div class="e-card">
         <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
         <div class="e-kick"><i></i>누구를 위해</div>
@@ -555,7 +401,7 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
       
       
     </div>
-    <div class="frame" data-name="A-03 참여방법" data-key="how" data-w="1080" data-h="1350" data-badge="final" data-desc="두 갈래 × 세 걸음을 그림(말풍선 → 투표·답장 → 소포)으로. 번호 배지로 순서, 점선으로 이어짐. [확인 필요] 0개.">
+    <div class="frame">
       <div class="e-card">
         <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
         <div class="e-kick"><i></i>참여 방법</div>
@@ -568,7 +414,7 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
       
       
     </div>
-    <div class="frame" data-name="A-04 후원" data-key="give" data-w="1080" data-h="1350" data-badge="final" data-desc="물품을 고르기 어려운 분께 후원이라는 두 번째 길. 계좌를 가장 크게(52px, 고정폭 숫자), 하트 봉투 그림 하나. 금액 없음.">
+    <div class="frame">
       <div class="e-card">
         <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
         <div class="e-kick"><i></i>후원</div>
@@ -596,7 +442,7 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
       
       
     </div>
-    <div class="frame" data-name="A-05 기도제목" data-key="prayer" data-w="1080" data-h="1350" data-badge="final" data-desc="기도제목 3개를 원문 그대로. 굵은 제목 한 줄 + 설명(24/36). 미색 바탕 — 1~6장 같은 결, 긴 글을 어르신도 편히 읽도록. 촛불(빛) 그림 작게(사람·얼굴 없음).">
+    <div class="frame">
       <div class="e-card">
         <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
         <div class="e-kick"><i></i>기도제목</div>
@@ -610,7 +456,7 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
       
       
     </div>
-    <div class="frame" data-name="A-06 단톡방초대" data-key="join" data-w="1080" data-h="1350" data-badge="final" data-desc="마지막 장 = 단톡방에 들어오기. 오른쪽 위 휴대폰 속 단톡방 투표 그림(240×336), 방 이름·QR·문의를 한 칸에. 로고·서명 없음(선교사님 말씀), 정보 칸을 키워 아래 여백을 맞춤.">
+    <div class="frame">
       <div class="e-card">
         <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
         <div class="e-kick"><i></i>오픈채팅</div>
@@ -632,456 +478,12 @@ body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none
       
       
     </div>
-  </section>
-</div>
-
-<!-- ===================== [CV ENGINE] 마크업·스크립트 — 수정 금지 ===================== -->
-<svg width="0" height="0" style="position:absolute" id="cv-engine-icons">
-  <symbol id="cv-hand" viewBox="0 0 24 24"><path d="M8 13V5a1.5 1.5 0 0 1 3 0v6M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V5.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5A6.5 6.5 0 0 1 4 16.5L3 13a1.5 1.5 0 0 1 2.7-1.2L8 15"/></symbol>
-  <symbol id="cv-frame" viewBox="0 0 24 24"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></symbol>
-  <symbol id="cv-comment" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 1-4.5 16.8L3 21l1.2-4.5A9 9 0 0 1 12 3z"/></symbol>
-  <symbol id="cv-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></symbol>
-  <symbol id="cv-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
-  <symbol id="cv-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
-  <symbol id="cv-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
-  <symbol id="cv-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
-  <symbol id="cv-list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
-  <symbol id="cv-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></symbol>
-  <symbol id="cv-pl" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
-  <symbol id="cv-pr" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></symbol>
-</svg>
-<div class="fx">
-  <div class="fx-top">
-    <div class="logo">CV</div>
-    <button class="fx-tool fx-mtool" id="cvBtnLayers" title="왼쪽 패널 접기/펴기 (Ctrl+\)"><svg class="ic ic-d"><use href="#cv-pl"/></svg><svg class="ic ic-m"><use href="#cv-list"/></svg></button>
-    <button class="fx-tool on" title="이동"><svg class="ic"><use href="#cv-hand"/></svg></button>
-    <button class="fx-tool" id="cvBtnFit" title="전체 보기 (Shift+1)"><svg class="ic"><use href="#cv-frame"/></svg></button>
-    <button class="fx-tool" id="cvBtnPins" title="코멘트 핀 켜기/끄기"><svg class="ic"><use href="#cv-comment"/></svg></button>
-    <div class="fx-file"><span id="cvPath"></span><b id="cvFile"></b></div>
-    <div class="fx-pages" id="cvPages"></div>
-    <button class="fx-tool" id="cvZOut" title="축소">−</button>
-    <span class="fx-zoom" id="cvZLbl">100%</span>
-    <button class="fx-tool" id="cvZIn" title="확대">+</button>
-    <button class="fx-tool fx-mtool" id="cvBtnInfo" title="오른쪽 패널 접기/펴기 (Ctrl+\)"><svg class="ic ic-d"><use href="#cv-pr"/></svg><svg class="ic ic-m"><use href="#cv-info"/></svg></button>
-    <button class="fx-present" id="cvBtnPresent"><svg class="ic"><use href="#cv-play"/></svg><span>발표</span></button>
-  </div>
-  <aside class="fx-left">
-    <div class="fx-sec" id="cvPageSec" hidden><div class="fx-h">페이지</div><div id="cvPageList"></div></div>
-    <div class="fx-sec"><div class="fx-h">레이어 <span id="cvLayerCnt"></span></div><div id="cvLayers"></div></div>
-    <div class="fx-sec fx-help"><div class="fx-h">조작법</div>
-      드래그 — 캔버스 이동<br>휠 — 상하 · <kbd>Shift</kbd>+휠 — 좌우<br><kbd>Ctrl</kbd>+휠 — 확대/축소<br>
-      <kbd>Shift</kbd>+<kbd>1</kbd> 전체 · <kbd>Shift</kbd>+<kbd>2</kbd> 선택 프레임<br>
-      <b>화면 더블클릭 — 페이지별(현재·개선안) 나란히 비교</b><br><kbd>Esc</kbd> 비교 닫기<br>빨간 핀 — 설계 의도</div>
-  </aside>
-  <div class="fx-vp" id="cvVp">
-    <div class="fx-world" id="cvWorld"></div>
-    <div class="fx-hud"><button id="cvHudFit" title="전체 보기"><svg class="ic"><use href="#cv-fit"/></svg></button><button id="cvHud100">100%</button></div>
-    <div class="fx-pbar"><button id="cvPPrev"><svg class="ic"><use href="#cv-left"/></svg></button><span id="cvPLbl"></span><button id="cvPNext"><svg class="ic"><use href="#cv-right"/></svg></button><button id="cvPExit">나가기 Esc</button></div>
-  </div>
-  <aside class="fx-right" id="cvInsp"></aside>
-  <div class="fx-scrim" id="cvScrim"></div>
-</div>
-<script id="cv-engine-js">
-(function () {
-  const GAP = 80, SEC_GAP = 200, SEC_PAD = 60, CMP_COLGAP = 200;
-  const $ = id => document.getElementById(id);
-  const vp = $('cvVp'), world = $('cvWorld'), src = $('cv-content');
-  $('cvPath').textContent = (document.body.dataset.path || '') + ' ';
-  $('cvFile').textContent = document.body.dataset.file || document.title;
-  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const BADGE = { asis: '현재', tobe: '개선', v1: '개선안 1', v2: '개선안 2', v3: '개선안 3', next: '신규' };
-  const W = f => +f.dataset.w || 1440, H = f => +f.dataset.h || 900, isMob = f => W(f) < 600;
-  const shortName = f => (f.dataset.name || '').replace(/^[A-Z]+-?\d+m?\s*/, '');
-
-  /* ---------- 배치: 페이지별로 section을 위→아래로 쌓는다 ---------- */
-  const secs = [...src.querySelectorAll(':scope > section.cv-sec')];
-  const pages = [];
-  secs.forEach(s => { const p = s.dataset.page || ''; if (!pages.includes(p)) pages.push(p); });
-  const multi = pages.length > 1;
-  const frames = [], notes = [], holders = [], yOf = {};
-  secs.forEach((sec, si) => {
-    const pg = sec.dataset.page || '';
-    const y = yOf[pg] || 0;
-    const fs = [...sec.querySelectorAll(':scope > .frame')];
-    const cols = +sec.dataset.cols || fs.length || 1;
-    let x = SEC_PAD, rowY = y + SEC_PAD, rowH = 0, maxX = 0;
-    fs.forEach((f, i) => {
-      if (i && i % cols === 0) { x = SEC_PAD; rowY += rowH + GAP + 30; rowH = 0; }
-      Object.assign(f.style, { left: x + 'px', top: rowY + 'px', width: W(f) + 'px', height: H(f) + 'px' });
-      if (f.dataset.radius) f.style.borderRadius = f.dataset.radius + 'px';
-      f.dataset.id = f.dataset.id || ('f' + frames.length);
-      f.dataset.sec = si; f.dataset.pg = pg;
-      const clip = document.createElement('div'); clip.className = 'clip';
-      [...f.childNodes].forEach(k => { if (!(k.nodeType === 1 && k.classList.contains('note'))) clip.appendChild(k); });
-      f.prepend(clip);
-      const b = f.dataset.badge;
-      const lab = document.createElement('div'); lab.className = 'flabel';
-      lab.innerHTML = (b ? `<span class="fbadge ${esc(b)}">${esc(BADGE[b] || b)}</span>` : '') + esc(f.dataset.name);
-      f.appendChild(lab);
-      f.querySelectorAll(':scope > .note').forEach(n => {
-        const note = { i: notes.length + 1, f: f.dataset.id, x: +n.dataset.x || 0, y: +n.dataset.y || 0, t: n.dataset.t || '', b: n.innerHTML };
-        const p = document.createElement('div'); p.className = 'pin';
-        p.style.left = note.x + 'px'; p.style.top = (note.y + 26) + 'px'; p.dataset.i = note.i;
-        p.innerHTML = note.i + `<span class="tip">${esc(note.t)}</span>`;
-        f.appendChild(p); note.el = p; notes.push(note); n.remove();
-      });
-      frames.push(f);
-      x += W(f) + GAP; maxX = Math.max(maxX, x - GAP); rowH = Math.max(rowH, H(f));
-    });
-    const secH = rowY + rowH + SEC_PAD - y;
-    const holder = document.createElement('div'); holder.className = 'cv-sec';
-    Object.assign(holder.style, { left: '0px', top: y + 'px', width: (maxX + SEC_PAD) + 'px', height: secH + 'px' });
-    holder.dataset.pg = pg;
-    holder.innerHTML = `<div class="cv-sec-t">${esc(sec.dataset.title || '')}${sec.dataset.sub ? ` <small>${esc(sec.dataset.sub)}</small>` : ''}</div>`;
-    world.appendChild(holder); holders.push(holder);
-    fs.forEach(f => world.appendChild(f));
-    yOf[pg] = y + secH + SEC_GAP;
-  });
-  src.remove();
-
-  /* ---------- 상태 ---------- */
-  let curPage = pages[0], selId = null, cmp = null; // cmp = { key, layer, items, cols }
-  const pageFrames = p => frames.filter(f => f.dataset.pg === p);
-  const visFrames = () => cmp ? cmp.items : pageFrames(curPage);
-  const noteOf = i => notes[i - 1];
-
-  /* ---------- 페이지 탭 ---------- */
-  if (multi) { document.body.classList.add('has-pages'); $('cvPageSec').hidden = false; }
-  function renderPages() {
-    if (!multi) return;
-    $('cvPages').innerHTML = pages.map(p => `<button data-p="${esc(p)}" class="${!cmp && p === curPage ? 'on' : ''}">${esc(p || '기본')}</button>`).join('') +
-      (cmp ? `<button class="cmp" id="cvCmpX">비교: ${esc(cmp.title)} <svg class="ic" style="width:13px;height:13px"><use href="#cv-x"/></svg></button>` : '');
-    requestAnimationFrame(revealTab);
-    $('cvPageList').innerHTML = pages.map(p => `<div class="fx-page ${!cmp && p === curPage ? 'on' : ''}" data-p="${esc(p)}">${esc(p || '기본')}<em>${pageFrames(p).length}</em></div>`).join('');
-  }
-  /* v2.4 탭이 많으면 상단 탭 바를 가로로 넘긴다 — 드래그·휠·현재 탭 자동 노출, 넘친 쪽 가장자리는 흐리게 */
-  function pagesEdge() {
-    const el = $('cvPages'), max = el.scrollWidth - el.clientWidth;
-    el.classList.toggle('ovl', el.scrollLeft > 2); el.classList.toggle('ovr', el.scrollLeft < max - 2);
-  }
-  function revealTab() {
-    const el = $('cvPages'), b = el.querySelector('button.on, button.cmp'); if (!b) { pagesEdge(); return; }
-    const l = b.offsetLeft - 24, r = b.offsetLeft + b.offsetWidth + 24;
-    if (l < el.scrollLeft) el.scrollLeft = l; else if (r > el.scrollLeft + el.clientWidth) el.scrollLeft = r - el.clientWidth;
-    pagesEdge();
-  }
-  (function tabScroller() {
-    const el = $('cvPages'); let sx = 0, sl = 0, down = false, moved = false;
-    el.addEventListener('scroll', pagesEdge, { passive: true });
-    window.addEventListener('resize', pagesEdge);
-    el.addEventListener('wheel', e => {
-      if (el.scrollWidth <= el.clientWidth) return;
-      const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      el.scrollLeft += d; e.preventDefault(); e.stopPropagation();
-    }, { passive: false });
-    el.addEventListener('pointerdown', e => {
-      if (e.pointerType !== 'mouse' || e.button !== 0) return;
-      down = true; moved = false; sx = e.clientX; sl = el.scrollLeft;
-    });
-    window.addEventListener('pointermove', e => {
-      if (!down) return;
-      const dx = e.clientX - sx;
-      if (!moved && Math.abs(dx) > 4) { moved = true; el.classList.add('drag'); }
-      if (moved) el.scrollLeft = sl - dx;
-    });
-    window.addEventListener('pointerup', () => {
-      if (!down) return; down = false;
-      if (moved) setTimeout(() => el.classList.remove('drag'), 0);
-    });
-  })();
-  $('cvPages').addEventListener('click', e => {
-    if (e.target.closest('#cvCmpX')) { exitCompare(); return; }
-    const b = e.target.closest('button[data-p]'); if (b) showPage(b.dataset.p);
-  });
-  $('cvPageList').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (b) showPage(b.dataset.p); });
-  function applyVisibility() {
-    holders.forEach(h => h.style.display = (!cmp && h.dataset.pg === curPage) ? '' : 'none');
-    frames.forEach(f => f.style.display = (!cmp && f.dataset.pg === curPage) ? '' : 'none');
-  }
-  function showPage(p, keepView) {
-    if (cmp) removeCompare();
-    curPage = p; select(null); applyVisibility(); renderPages(); renderLayers();
-    if (!keepView) requestAnimationFrame(fitDefault);
-  }
-
-  /* ---------- 레이어 ---------- */
-  const layers = $('cvLayers');
-  function renderLayers() {
-    if (cmp) {
-      $('cvLayerCnt').textContent = cmp.items.length;
-      layers.innerHTML = cmp.cols.map(c => `<div class="fx-group">▾ ${esc(c.p || '기본')}</div>` +
-        (c.fs.length ? c.fs.map(f => `<div class="fx-layer" data-cid="${f.dataset.cid}"><span class="hash">#</span>${esc(f.dataset.name)}</div>`).join('') : '<div class="fx-layer" style="color:#aaa">해당 화면 없음</div>')).join('');
-      return;
-    }
-    const vis = pageFrames(curPage);
-    $('cvLayerCnt').textContent = vis.length;
-    layers.innerHTML = secs.map((sec, si) => (sec.dataset.page || '') !== curPage ? '' :
-      `<div class="fx-group" data-sec="${si}">▾ ${esc(sec.dataset.title || '섹션')}</div>` +
-      frames.filter(f => f.dataset.sec == si).map(f => `<div class="fx-layer" data-id="${f.dataset.id}"><span class="hash">#</span>${esc(f.dataset.name)}</div>`).join('')).join('');
-  }
-  /* ---------- 모바일 하단 시트(v2.2) ---------- */
-  const isNarrow = () => window.matchMedia('(max-width:900px)').matches;
-  function sheet(which) {
-    document.body.classList.toggle('sheet-left', which === 'left');
-    document.body.classList.toggle('sheet-right', which === 'right');
-  }
-  const closeSheet = () => sheet(null);
-  /* 데스크톱 패널 접기(v2.3) — 접은 상태는 보는 사람 브라우저에만 기억(localStorage, 실패해도 무시) */
-  const PANEL_KEY = 'cv-panels';
-  const shown = side => !document.body.classList.contains('hide-' + side);
-  function setPanels(left, right) {
-    const before = vp.getBoundingClientRect().left;
-    document.body.classList.toggle('hide-left', !left);
-    document.body.classList.toggle('hide-right', !right);
-    const after = vp.getBoundingClientRect().left;
-    if (before !== after) { s.x += before - after; apply(false); } // 캔버스 내용이 화면에서 튀지 않게
-    try { localStorage.setItem(PANEL_KEY, JSON.stringify({ left, right })); } catch (e) {}
-  }
-  $('cvBtnLayers').onclick = () => isNarrow() ? sheet(document.body.classList.contains('sheet-left') ? null : 'left') : setPanels(!shown('left'), shown('right'));
-  $('cvBtnInfo').onclick = () => isNarrow() ? sheet(document.body.classList.contains('sheet-right') ? null : 'right') : setPanels(shown('left'), !shown('right'));
-  $('cvScrim').onclick = closeSheet;
-  $('cvPageList').addEventListener('click', () => { if (isNarrow()) closeSheet(); });
-  layers.addEventListener('click', e => {
-    if (isNarrow() && e.target.closest('.fx-layer,.fx-group')) closeSheet();
-    const l = e.target.closest('.fx-layer');
-    if (l && l.dataset.cid) { const c = cmp.items.find(x => x.dataset.cid === l.dataset.cid); fitRect(...bounds([c]), 50); return; }
-    if (l && l.dataset.id) { select(l.dataset.id); fitFrame(l.dataset.id); return; }
-    const g = e.target.closest('.fx-group'); if (g && g.dataset.sec) fitSec(g.dataset.sec);
-  });
-
-  /* ---------- 인스펙터 ---------- */
-  const summary = $('cv-summary') ? $('cv-summary').innerHTML : '';
-  const noteCard = n => `<div class="fx-note" data-i="${n.i}"><div class="t"><span class="n">${n.i}</span>${esc(n.t)}</div><p>${n.b}</p></div>`;
-  const keyPages = key => pages.filter(p => frames.some(f => f.dataset.pg === p && f.dataset.key === key));
-  function inspector() {
-    const el = $('cvInsp');
-    if (cmp) {
-      el.innerHTML = `<div class="fx-sec"><div class="fx-h">비교: ${esc(cmp.title)} <span>${cmp.cols.length}개 페이지</span></div>
-        <p class="fx-desc">같은 화면을 페이지별 열로, 데스크탑/모바일을 행으로 나란히 놓았습니다. <kbd>Esc</kbd> 또는 상단 탭으로 돌아갑니다.</p>
-        <button class="fx-cmpbtn" id="cvCmpClose">비교 닫기</button></div>` +
-        cmp.cols.map(c => `<div class="fx-sec"><div class="fx-colh">${esc(c.p || '기본')} <span style="color:#999;font-weight:500">${c.fs.length ? c.fs.map(f => esc(shortName(f))).join(' · ') : '해당 화면 없음'}</span></div>` +
-          (c.fs.flatMap(f => notes.filter(n => n.f === f.dataset.id)).map(noteCard).join('') || '<p class="fx-desc" style="color:#999">코멘트 없음</p>') + '</div>').join('');
-      $('cvCmpClose').onclick = () => exitCompare();
-    } else if (!selId) {
-      el.innerHTML = `<div class="fx-sec"><div class="fx-h">개요 <span>${multi ? esc(curPage) + ' · ' : ''}프레임 ${pageFrames(curPage).length} · 전체 ${frames.length}</span></div><p class="fx-desc">프레임이나 레이어를 누르면 설계 의도와 코멘트가 이곳에 나옵니다.${multi ? ' 화면을 <b>더블클릭</b>하면 같은 화면의 다른 페이지 버전을 나란히 봅니다.' : ''}</p></div>` + summary;
-    } else {
-      const f = frames.find(x => x.dataset.id === selId);
-      const ns = notes.filter(n => n.f === selId);
-      const kp = f.dataset.key ? keyPages(f.dataset.key) : [];
-      el.innerHTML = `<div class="fx-sec"><div class="fx-h">${esc(f.dataset.name)}</div><div class="fx-kv"><span>W</span><b>${W(f)}</b><span>H</span><b>${H(f)}</b></div>` +
-        (kp.length > 1 ? `<button class="fx-cmpbtn" id="cvCmpOpen">이 화면 비교 보기 — ${kp.map(esc).join(' · ')}</button>` : '') + '</div>' +
-        (f.dataset.desc ? `<div class="fx-sec"><div class="fx-h">설계 의도</div><div class="fx-desc">${esc(f.dataset.desc)}</div></div>` : '') +
-        `<div class="fx-sec"><div class="fx-h">코멘트 <span>${ns.length}</span></div>` + (ns.length ? ns.map(noteCard).join('') : '<p class="fx-desc" style="color:#999">코멘트 없음</p>') + '</div>';
-      if ($('cvCmpOpen')) $('cvCmpOpen').onclick = () => compare(f.dataset.key, f.dataset.id);
-    }
-    el.querySelectorAll('.fx-note').forEach(c => c.addEventListener('click', () => focusNote(+c.dataset.i)));
-  }
-  function select(id) {
-    selId = id;
-    frames.forEach(f => f.classList.toggle('sel', f.dataset.id === id));
-    layers.querySelectorAll('.fx-layer').forEach(l => l.classList.toggle('on', l.dataset.id === id));
-    inspector();
-  }
-  function focusNote(i) {
-    const n = noteOf(i);
-    let host, pin;
-    if (cmp) {
-      host = cmp.items.find(c => c.dataset.src === n.f);
-      if (!host) return;
-      pin = host.querySelector(`.pin[data-i="${i}"]`);
-    } else {
-      if (selId !== n.f) select(n.f);
-      host = frames.find(x => x.dataset.id === n.f); pin = n.el;
-    }
-    document.querySelectorAll('.fx-note').forEach(c => c.classList.toggle('on', +c.dataset.i === i));
-    if (isNarrow()) { sheet('right'); const card = document.querySelector(`#cvInsp .fx-note[data-i="${i}"]`); if (card) card.scrollIntoView({ block: 'nearest' }); return; }
-    fitRect(parseFloat(host.style.left) + n.x - 360, parseFloat(host.style.top) + n.y - 240, 760, 520, 40);
-    if (pin) { pin.classList.remove('pulse'); void pin.offsetWidth; pin.classList.add('pulse'); }
-  }
-
-  /* ---------- 비교 보기: 같은 data-key를 페이지(열) × 기기(행)로 ---------- */
-  function removeCompare() { if (cmp) { cmp.layer.remove(); cmp = null; } }
-  function exitCompare() { removeCompare(); applyVisibility(); renderPages(); renderLayers(); select(null); requestAnimationFrame(fitDefault); }
-  function compare(key, fromId) {
-    if (!key) return;
-    removeCompare();
-    // key를 쓰는 페이지는 모두 열로 둔다 — 그 화면이 없는 페이지는 "화면 없음" 칸으로 보여 준다(예: 현재에 없는 신규 기능)
-    const cols = pages.filter(p => frames.some(f => f.dataset.pg === p && f.dataset.key))
-      .map(p => ({ p, fs: frames.filter(f => f.dataset.pg === p && f.dataset.key === key) }));
-    if (cols.filter(c => c.fs.length).length < 2) return;
-    const rows = [['데스크탑', f => !isMob(f)], ['모바일', isMob]].filter(r => cols.some(c => c.fs.some(r[1])));
-    const colW = cols.map(c => Math.max(...rows.map(r => { const fs = c.fs.filter(r[1]); return fs.length ? fs.reduce((a, f) => a + W(f), 0) + GAP * (fs.length - 1) : 600; })));
-    const rowH = rows.map(r => Math.max(...cols.map(c => { const fs = c.fs.filter(r[1]); return fs.length ? Math.max(...fs.map(H)) : 400; })));
-    const layer = document.createElement('div'); layer.className = 'cv-cmp';
-    const items = [];
-    let x = 0; const colX = cols.map((c, ci) => { const cx = x; x += colW[ci] + CMP_COLGAP; return cx; });
-    cols.forEach((c, ci) => {
-      const a = document.createElement('div'); a.className = 'cv-anchor';
-      Object.assign(a.style, { left: colX[ci] + 'px', top: '0px', width: colW[ci] + 'px' });
-      a.innerHTML = `<div class="cv-coltitle">${esc(c.p || '기본')}</div>`; layer.appendChild(a);
-    });
-    let y = 0, cid = 0;
-    rows.forEach((r, ri) => {
-      const a = document.createElement('div'); a.className = 'cv-anchor';
-      Object.assign(a.style, { left: '0px', top: y + 'px', width: '0px' });
-      a.innerHTML = `<div class="cv-rowlab">${r[0]}</div>`; layer.appendChild(a);
-      cols.forEach((c, ci) => {
-        const fs = c.fs.filter(r[1]);
-        let fx = colX[ci];
-        if (!fs.length) {
-          const ph = document.createElement('div'); ph.className = 'cv-ph';
-          const pw = Math.min(colW[ci], r[0] === '모바일' ? 390 : 900), phh = Math.min(rowH[ri], r[0] === '모바일' ? 844 : 560);
-          Object.assign(ph.style, { left: fx + 'px', top: y + 'px', width: pw + 'px', height: phh + 'px' });
-          ph.innerHTML = `<div>${esc(c.p || '기본')}<small>${r[0]} 화면 없음</small></div>`; layer.appendChild(ph);
-        }
-        fs.forEach(f => {
-          const cl = f.cloneNode(true);
-          cl.classList.remove('sel'); cl.style.display = ''; cl.style.left = fx + 'px'; cl.style.top = y + 'px';
-          cl.dataset.src = f.dataset.id; cl.dataset.cid = 'c' + (cid++); cl.removeAttribute('data-id');
-          layer.appendChild(cl); items.push(cl); fx += W(f) + GAP;
-        });
-      });
-      y += rowH[ri] + SEC_GAP;
-    });
-    const src0 = frames.find(f => f.dataset.id === fromId) || cols.find(c => c.fs.length).fs[0];
-    cmp = { key, layer, items, cols, title: shortName(src0) || key };
-    world.appendChild(layer);
-    selId = null; frames.forEach(f => f.classList.remove('sel'));
-    applyVisibility(); renderPages(); renderLayers(); inspector();
-    cmp.fit = () => { const [bx, by, bw, bh] = bounds(items.concat([...layer.querySelectorAll('.cv-ph')]), 110); fitRect(bx - 260, by, bw + 260, bh, 40); };
-    requestAnimationFrame(cmp.fit);
-  }
-
-  /* ---------- 팬/줌 ---------- */
-  const s = { x: 0, y: 0, k: .3 };
-  function apply(anim) {
-    world.classList.toggle('anim', !!anim);
-    world.style.transform = `translate(${s.x}px,${s.y}px) scale(${s.k})`;
-    world.style.setProperty('--inv', (1 / s.k).toFixed(3));
-    world.classList.toggle('tiny', s.k < 0.13);
-    $('cvZLbl').textContent = Math.round(s.k * 100) + '%';
-  }
-  function fitRect(x, y, w, h, pad = 60, maxK = 1.5) {
-    const vw = vp.clientWidth, vh = vp.clientHeight;
-    s.k = Math.max(.02, Math.min((vw - pad * 2) / w, (vh - pad * 2) / h, maxK));
-    s.x = (vw - w * s.k) / 2 - x * s.k; s.y = (vh - h * s.k) / 2 - y * s.k; apply(true);
-  }
-  function bounds(list, top = 40) {
-    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
-    list.forEach(f => { const x = parseFloat(f.style.left), y = parseFloat(f.style.top);
-      x1 = Math.min(x1, x); y1 = Math.min(y1, y); x2 = Math.max(x2, x + parseFloat(f.style.width)); y2 = Math.max(y2, y + parseFloat(f.style.height)); });
-    return [x1, y1 - top, x2 - x1, y2 - y1 + top];
-  }
-  const fitAll = () => { if (cmp) return cmp.fit(); const v = visFrames(); if (v.length) fitRect(...bounds(v), 40); };
-  const fitFrame = (id, pad = 50) => fitRect(...bounds([frames.find(f => f.dataset.id === id)]), pad);
-  const fitSec = si => fitRect(...bounds(frames.filter(f => f.dataset.sec == si)), 40);
-  function fitDefault() {
-    if (cmp) return fitAll();
-    const v = pageFrames(curPage);
-    if (v.length > 12) fitSec(v[0].dataset.sec); else fitAll();
-  }
-  function zoomAt(mx, my, nk) { nk = Math.max(.02, Math.min(4, nk)); s.x = mx - (mx - s.x) * nk / s.k; s.y = my - (my - s.y) * nk / s.k; s.k = nk; apply(false); }
-  vp.addEventListener('wheel', e => {
-    e.preventDefault(); const r = vp.getBoundingClientRect();
-    if (e.ctrlKey || e.metaKey) zoomAt(e.clientX - r.left, e.clientY - r.top, s.k * Math.exp(-e.deltaY * .0025));
-    else if (e.shiftKey && !e.deltaX) { s.x -= e.deltaY; apply(false); }
-    else { s.x -= e.deltaX; s.y -= e.deltaY; apply(false); }
-  }, { passive: false });
-  let down = null, pinch = null; const ptrs = new Map(); const CV = window.CV = { moved: false };
-  vp.addEventListener('pointerdown', e => {
-    if (e.button > 1) return;
-    ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (ptrs.size === 2) { // 두 손가락 — 핀치 확대·축소 + 이동
-      const [a, b] = [...ptrs.values()];
-      pinch = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, k: s.k, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2, sx: s.x, sy: s.y };
-      down = null; CV.moved = true; return;
-    }
-    down = { x: e.clientX, y: e.clientY, sx: s.x, sy: s.y }; CV.moved = false;
-  });
-  window.addEventListener('pointermove', e => {
-    if (ptrs.has(e.pointerId)) ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    if (pinch && ptrs.size >= 2) {
-      const [a, b] = [...ptrs.values()], r = vp.getBoundingClientRect();
-      const nk = Math.max(.02, Math.min(4, pinch.k * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d));
-      const px = pinch.mx - r.left, py = pinch.my - r.top;
-      s.k = nk; s.x = px - (px - pinch.sx) * nk / pinch.k + ((a.x + b.x) / 2 - pinch.mx); s.y = py - (py - pinch.sy) * nk / pinch.k + ((a.y + b.y) / 2 - pinch.my);
-      apply(false); return;
-    }
-    if (!down) return; const dx = e.clientX - down.x, dy = e.clientY - down.y;
-    if (!CV.moved && Math.hypot(dx, dy) > 6) { CV.moved = true; vp.classList.add('drag'); }
-    if (CV.moved) { s.x = down.sx + dx; s.y = down.sy + dy; apply(false); }
-  });
-  const ptrUp = e => {
-    ptrs.delete(e.pointerId);
-    if (ptrs.size < 2) pinch = null;
-    if (!ptrs.size) { down = null; vp.classList.remove('drag'); setTimeout(() => CV.moved = false, 0); }
-  };
-  window.addEventListener('pointerup', ptrUp);
-  window.addEventListener('pointercancel', ptrUp);
-  // 터치 기기에서는 dblclick 이 오지 않거나 확대로 먹히므로 두 번 탭을 직접 판정한다.
-  const coarse = window.matchMedia('(pointer:coarse)').matches;
-  let lastTap = { t: 0, f: null };
-  vp.addEventListener('click', e => {
-    if (CV.moved) return;
-    if (coarse) {
-      const f0 = e.target.closest('.frame'), now = Date.now();
-      if (f0 && lastTap.f === f0 && now - lastTap.t < 350) { lastTap = { t: 0, f: null }; onDouble(f0); return; }
-      lastTap = { t: now, f: f0 };
-    }
-    const pin = e.target.closest('.pin'); if (pin) { focusNote(+pin.dataset.i); return; }
-    if (cmp) return;
-    const f = e.target.closest('.frame'); if (f) { if (selId !== f.dataset.id) select(f.dataset.id); } else select(null);
-  });
-  vp.addEventListener('dblclick', e => { const f = e.target.closest('.frame'); if (f) onDouble(f); });
-  function onDouble(f) {
-    if (cmp) { fitRect(...bounds([f]), 50); return; }
-    if (multi && f.dataset.key && keyPages(f.dataset.key).length > 1) compare(f.dataset.key, f.dataset.id);
-    else fitFrame(f.dataset.id);
-  }
-  const zc = () => [vp.clientWidth / 2, vp.clientHeight / 2];
-  $('cvZIn').onclick = () => zoomAt(...zc(), s.k * 1.25);
-  $('cvZOut').onclick = () => zoomAt(...zc(), s.k / 1.25);
-  $('cvHudFit').onclick = $('cvBtnFit').onclick = fitAll;
-  $('cvHud100').onclick = () => zoomAt(...zc(), 1);
-  let pinsOn = true;
-  $('cvBtnPins').onclick = e => { pinsOn = !pinsOn; e.currentTarget.classList.toggle('on', !pinsOn); world.querySelectorAll('.pin').forEach(p => p.style.display = pinsOn ? '' : 'none'); };
-
-  /* ---------- 발표 (현재 페이지 또는 비교 화면 순회) ---------- */
-  let pIdx = 0;
-  function present(i) {
-    const v = visFrames(); if (!v.length) return;
-    pIdx = (i + v.length) % v.length;
-    $('cvPLbl').textContent = `${pIdx + 1} / ${v.length} · ${v[pIdx].dataset.name}`;
-    frames.forEach(f => f.classList.toggle('pcur', f === v[pIdx])); /* v2.4 발표 중에는 현재 프레임만 — 이웃 프레임이 위아래로 비치지 않게 */
-    requestAnimationFrame(() => fitRect(...bounds([v[pIdx]]), 30));
-  }
-  $('cvBtnPresent').onclick = () => { closeSheet(); document.body.classList.add('present'); const v = visFrames(); present(Math.max(0, v.findIndex(f => f.dataset.id === selId))); };
-  $('cvPPrev').onclick = () => present(pIdx - 1);
-  $('cvPNext').onclick = () => present(pIdx + 1);
-  $('cvPExit').onclick = () => { document.body.classList.remove('present'); frames.forEach(f => f.classList.remove('pcur')); requestAnimationFrame(fitDefault); };
-  window.addEventListener('keydown', e => {
-    const pr = document.body.classList.contains('present');
-    if (pr && (e.key === 'ArrowRight' || e.key === ' ')) { e.preventDefault(); present(pIdx + 1); }
-    else if (pr && e.key === 'ArrowLeft') present(pIdx - 1);
-    else if ((e.ctrlKey || e.metaKey) && e.key === '\\') { e.preventDefault(); const any = shown('left') || shown('right'); setPanels(!any, !any); }
-    else if (e.key === 'Escape') { if (pr) $('cvPExit').click(); else if (cmp) exitCompare(); else select(null); }
-    else if (e.shiftKey && e.code === 'Digit1') fitAll();
-    else if (e.shiftKey && e.code === 'Digit2' && selId) fitFrame(selId);
-    else if ((e.key === '+' || e.key === '=') && !e.ctrlKey) zoomAt(...zc(), s.k * 1.25);
-    else if (e.key === '-' && !e.ctrlKey) zoomAt(...zc(), s.k / 1.25);
-  });
-  window.addEventListener('resize', () => { if (document.body.classList.contains('present')) present(pIdx); });
-
-  Object.assign(CV, { frames, notes, pages, select, fitAll, fitFrame, fitRect, fitSec, showPage, compare, exitCompare, state: s, apply });
-  Object.defineProperty(CV, 'cmp', { get: () => cmp });
-  try { const p = JSON.parse(localStorage.getItem(PANEL_KEY) || 'null'); if (p) { document.body.classList.toggle('hide-left', p.left === false); document.body.classList.toggle('hide-right', p.right === false); } } catch (e) {}
-  applyVisibility(); renderPages(); renderLayers(); inspector();
-  // 처음 맞춤 때 캔버스 크기가 0이면(숨은 iframe·좁은 창 전환 등) 크기가 생기는 순간 한 번 더 맞춘다(v2.2).
-  let fitted = false;
-  const firstFit = () => { if (vp.clientWidth > 0 && vp.clientHeight > 0) { fitted = true; fitDefault(); } };
-  requestAnimationFrame(firstFit);
-  if (window.ResizeObserver) new ResizeObserver(() => { if (!fitted) firstFit(); }).observe(vp);
-})();
+  
+</main>
+<script>
+document.querySelectorAll('.frame').forEach(f=>{const s=document.createElement('div');s.className='slot';f.parentNode.insertBefore(s,f);s.appendChild(f);});
+function fit(){document.querySelectorAll('.slot').forEach(s=>{s.firstElementChild.style.transform='scale('+(s.clientWidth/1080)+')';});}
+fit();addEventListener('resize',fit);
 </script>
 </body>
 </html>
