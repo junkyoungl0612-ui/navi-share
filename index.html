@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ============================================================
+     .cv.html (Canvas View) 조직 표준 시안 템플릿 v2.4 (2026-09-30, v2.1 10-04 좁은 창 캔버스 폭 0 수정, v2.2 10-04 모바일: 터치 이동·핀치 확대·두 번 탭 비교·하단 시트, v2.3 10-04 양쪽 패널 접기, v2.4 10-09 상단 탭 가로 넘김·발표 시 현재 프레임만)
+     HCMG 서식 — 가이드: 화면시안_cv_가이드.md (엔진 정본은 ai-org knowledge/templates/cv/canvas.cv.html, cv-engine-sync로 동기화)
+     작성자가 바꾸는 곳은 딱 3군데:
+       1) 문서 제목(title 요소), body의 data-path / data-file
+       2) [PROJECT STYLES] 블록 (프로젝트 디자인 시스템 CSS)
+       3) [CANVAS CONTENT] 블록 (섹션 > 프레임 > 핀)
+     [CV ENGINE] 블록(크롬 CSS·스크립트)은 수정하지 않는다.
+     주의: 이 파일의 주석 안에는 꺾쇠 태그 문자열을 쓰지 않는다(조립기가 마커로 오인).
+     ============================================================ -->
+<title>나비선교회 물품후원 카드뉴스</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ===================== [CV ENGINE] CSS — 수정 금지 ===================== -->
+<style id="cv-engine-css">
+:root{--fx-bar:#2C2C2C;--fx-panel:#fff;--fx-line:#E6E6E6;--fx-txt:#1E1E1E;--fx-sub:#7A7A7A;--fx-canvas:#E8E8E5;--fx-sel:#0D99FF;--fx-pin:#F24E1E;}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;height:100%;overflow:hidden;}
+body{font-family:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--fx-canvas);color:var(--fx-txt);-webkit-font-smoothing:antialiased;}
+.ic{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;vertical-align:middle;}
+.fx{display:grid;grid-template-rows:44px 1fr;grid-template-columns:var(--cv-lw,248px) 1fr var(--cv-rw,300px);height:100vh;}
+.fx-left{grid-column:1;grid-row:2;}.fx-vp{grid-column:2;grid-row:2;}.fx-right{grid-column:3;grid-row:2;}
+body.hide-left{--cv-lw:0px;}body.hide-right{--cv-rw:0px;}body.hide-left .fx-left,body.hide-right .fx-right{display:none;}
+.fx-top{grid-column:1/-1;background:var(--fx-bar);color:#fff;display:flex;align-items:center;padding:0 10px;gap:6px;font-size:12px;min-width:0;}
+.fx-top .logo{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;background:#3A3A3A;font-weight:800;font-size:12px;flex-shrink:0;}
+.fx-tool{height:30px;min-width:30px;padding:0 8px;border-radius:6px;border:0;background:transparent;color:#DDD;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font:inherit;flex-shrink:0;}
+.fx-tool:hover{background:#3D3D3D;color:#fff;}
+.fx-tool.on{background:var(--fx-sel);color:#fff;}
+.fx-file{margin:0 auto;display:flex;align-items:center;gap:8px;color:#BDBDBD;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.fx-file b{color:#fff;font-weight:600;}
+body.has-pages .fx-file{margin:0 10px 0 6px;flex:0 1 auto;}
+.fx-pages{display:none;margin:0 auto;gap:2px;background:#1E1E1E;border-radius:8px;padding:3px;flex:0 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab;}
+.fx-pages::-webkit-scrollbar{display:none;}
+.fx-pages.drag{cursor:grabbing;}.fx-pages.drag button{pointer-events:none;}
+.fx-pages.ovl{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px);mask-image:linear-gradient(90deg,transparent,#000 28px);}
+.fx-pages.ovr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);}
+.fx-pages.ovl.ovr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);}
+body.has-pages .fx-pages{display:flex;}
+.fx-pages button{border:0;background:transparent;color:#BDBDBD;height:28px;padding:0 12px;border-radius:6px;font:600 12.5px "Pretendard",sans-serif;cursor:pointer;white-space:nowrap;}
+.fx-pages button:hover{color:#fff;background:#333;}
+.fx-pages button.on{background:#fff;color:#1E1E1E;}
+.fx-pages .cmp{background:#F24E1E;color:#fff;display:inline-flex;align-items:center;gap:6px;}
+.fx-zoom{min-width:48px;text-align:center;color:#fff;flex-shrink:0;}
+.fx-present{background:var(--fx-sel);color:#fff;border:0;border-radius:6px;height:30px;padding:0 12px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center;flex-shrink:0;}
+.fx-left,.fx-right{background:var(--fx-panel);border-right:1px solid var(--fx-line);overflow:auto;font-size:12px;}
+.fx-right{border-right:0;border-left:1px solid var(--fx-line);}
+.fx-sec{padding:12px 14px;border-bottom:1px solid var(--fx-line);}
+.fx-h{font-size:11px;font-weight:700;margin:0 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.fx-h span{color:var(--fx-sub);font-weight:500;}
+.fx-page{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:5px;cursor:pointer;color:#333;}
+.fx-page:hover{background:#F2F2F2;}
+.fx-page.on{background:#F2F2F2;font-weight:700;}
+.fx-page em{margin-left:auto;font-style:normal;color:var(--fx-sub);font-family:"IBM Plex Mono",monospace;font-size:10.5px;}
+.fx-group{font-size:11px;font-weight:700;color:var(--fx-sub);padding:8px 8px 4px;display:flex;gap:6px;align-items:center;cursor:pointer;}
+.fx-group:hover{color:var(--fx-txt);}
+.fx-layer{display:flex;align-items:center;gap:8px;padding:5px 8px 5px 18px;border-radius:5px;cursor:pointer;color:#333;}
+.fx-layer:hover{background:#F2F2F2;}
+.fx-layer.on{background:#E5F4FF;color:#0A6DC2;font-weight:600;}
+.fx-layer .hash{color:#999;font-family:"IBM Plex Mono",monospace;font-size:11px;}
+.fx-kv{display:grid;grid-template-columns:22px 1fr 22px 1fr;gap:6px;align-items:center;color:var(--fx-sub);}
+.fx-kv b{font-weight:500;color:var(--fx-txt);background:#F5F5F5;border-radius:4px;padding:4px 6px;font-family:"IBM Plex Mono",monospace;font-size:11px;}
+.fx-desc{line-height:1.6;color:#333;margin:0;}
+.fx-desc p{margin:0 0 8px;}
+.fx-cmpbtn{width:100%;height:32px;border:0;border-radius:6px;background:#1E1E1E;color:#fff;font:600 12px "Pretendard",sans-serif;cursor:pointer;margin-top:10px;}
+.fx-cmpbtn:hover{background:#000;}
+.fx-note{border:1px solid var(--fx-line);border-radius:8px;padding:10px;margin-bottom:8px;cursor:pointer;transition:.15s;}
+.fx-note:hover{border-color:#BBB;}
+.fx-note.on{border-color:var(--fx-pin);box-shadow:0 0 0 3px rgba(242,78,30,.12);}
+.fx-note .t{display:flex;gap:8px;align-items:flex-start;font-weight:700;font-size:12px;line-height:1.4;}
+.fx-note .n{flex-shrink:0;width:20px;height:20px;border-radius:50% 50% 50% 4px;background:var(--fx-pin);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:700;}
+.fx-note p{margin:6px 0 0 28px;line-height:1.6;color:#444;}
+.fx-colh{font-size:11px;font-weight:800;margin:14px 0 6px;color:var(--fx-txt);display:flex;gap:6px;align-items:center;}
+.fx-colh:first-child{margin-top:0;}
+.fx-tok{display:flex;align-items:center;gap:8px;padding:4px 0;}
+.fx-tok i{width:18px;height:18px;border-radius:4px;border:1px solid rgba(0,0,0,.1);}
+.fx-tok code{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--fx-sub);}
+.fx-help{color:var(--fx-sub);line-height:1.7;}
+.fx-help kbd{font-family:"IBM Plex Mono",monospace;font-size:10px;background:#F2F2F2;border:1px solid #DDD;border-bottom-width:2px;border-radius:4px;padding:0 4px;}
+.fx-vp{position:relative;overflow:hidden;cursor:grab;touch-action:none;background:var(--fx-canvas) radial-gradient(#D2D2CE 1px,transparent 1px) 0 0/24px 24px;}
+.fx-vp.drag{cursor:grabbing;}
+.fx-world{position:absolute;left:0;top:0;transform-origin:0 0;--inv:1;}
+.fx-world.anim{transition:transform .45s cubic-bezier(.2,.8,.2,1);}
+.cv-sec{position:absolute;border-radius:calc(10px * var(--inv));background:rgba(255,255,255,.35);border:calc(1px * var(--inv)) solid rgba(0,0,0,.08);}
+.cv-sec-t{position:absolute;left:0;bottom:100%;margin-bottom:calc(8px * min(var(--inv), 8));font-size:calc(15px * min(var(--inv), 8));font-weight:800;color:#555;white-space:nowrap;display:flex;gap:calc(8px * min(var(--inv), 8));align-items:center;}
+.cv-sec-t small{font-weight:500;color:#888;font-size:calc(12px * min(var(--inv), 8));}
+.cv-anchor{position:absolute;height:0;}
+.cv-coltitle{position:absolute;left:0;bottom:0;margin-bottom:calc(34px * min(var(--inv), 8));font-size:calc(22px * min(var(--inv), 8));font-weight:900;color:#1E1E1E;white-space:nowrap;letter-spacing:-.02em;}
+.cv-rowlab{position:absolute;right:0;top:0;margin-right:calc(24px * min(var(--inv), 8));font-size:calc(15px * min(var(--inv), 8));font-weight:800;color:#666;white-space:nowrap;}
+.cv-ph{position:absolute;border:calc(2px * min(var(--inv), 8)) dashed #BDBDB8;border-radius:12px;display:grid;place-items:center;color:#8A8A85;font-size:28px;font-weight:700;background:rgba(255,255,255,.4);text-align:center;line-height:1.5;}
+.cv-ph small{display:block;font-size:18px;font-weight:500;}
+.fx-world.tiny .flabel,.fx-world.tiny .pin{visibility:hidden;}
+.frame{position:absolute;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12),0 8px 30px rgba(0,0,0,.06);}
+.frame > .clip{position:absolute;inset:0;overflow:hidden;border-radius:inherit;}
+.frame.sel{outline:calc(2px * var(--inv)) solid var(--fx-sel);}
+.frame .note{display:none;}
+.flabel{position:absolute;left:0;bottom:100%;margin-bottom:calc(6px * var(--inv));font-size:calc(12px * var(--inv));color:#666;white-space:nowrap;cursor:pointer;font-weight:500;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+.frame.sel .flabel{color:var(--fx-sel);}
+.fbadge{display:inline-block;font-size:.85em;font-weight:700;border-radius:3px;padding:0 .35em;margin-right:.35em;color:#fff;}
+.fbadge.asis{background:#8A817A;} .fbadge.tobe,.fbadge.v1{background:#1E7B4F;} .fbadge.v2{background:#18181B;} .fbadge.v3{background:#2563EB;} .fbadge.next{background:#7B3FE4;}
+.pin{position:absolute;z-index:50;width:26px;height:26px;margin-top:-26px;border-radius:50% 50% 50% 4px;background:var(--fx-pin);color:#fff;font:700 12px/22px "Pretendard",sans-serif;text-align:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25);border:2px solid #fff;transform:scale(min(var(--inv), 3.2));transform-origin:0 100%;}
+.pin:hover{background:#D63A0B;}
+.pin.pulse{animation:pinP 1s ease 2;}
+@keyframes pinP{50%{box-shadow:0 0 0 12px rgba(242,78,30,.25);}}
+.pin .tip{position:absolute;left:30px;bottom:0;background:#1E1E1E;color:#fff;font-size:11px;font-weight:600;line-height:1.35;white-space:nowrap;padding:5px 8px;border-radius:6px;display:none;}
+.pin:hover .tip{display:block;}
+.fx-hud{position:absolute;right:12px;bottom:12px;display:flex;gap:4px;background:#fff;border:1px solid var(--fx-line);border-radius:8px;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,.08);font-size:12px;}
+.fx-hud button{border:0;background:transparent;height:28px;min-width:28px;padding:0 8px;border-radius:5px;cursor:pointer;font:inherit;color:#333;}
+.fx-hud button:hover{background:#F2F2F2;}
+.fx-pbar{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:#1E1E1E;color:#fff;border-radius:999px;padding:6px 8px;display:none;align-items:center;gap:6px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.3);white-space:nowrap;}
+.fx-pbar button{border:0;background:#333;color:#fff;border-radius:999px;height:28px;min-width:28px;cursor:pointer;font:inherit;padding:0 10px;}
+body.present .fx{grid-template-columns:0 1fr 0;grid-template-rows:0 1fr;}
+body.present .fx-top,body.present .fx-left,body.present .fx-right{display:none;}
+body.present .fx-vp{background:#1E1E1E;}
+body.present .flabel,body.present .pin,body.present .cv-sec,body.present .cv-anchor{visibility:hidden;}
+body.present .frame{visibility:hidden;}body.present .frame.pcur{visibility:visible;}
+body.present .fx-pbar{display:flex;}
+body.present .fx-hud{display:none;}
+@media (max-width:1100px){.fx-file{display:none;}}
+@media (max-width:900px){.fx{grid-template-columns:0 1fr 0;}.fx-left,.fx-right{display:none;}.fx-vp{grid-column:2;grid-row:2;}}
+/* v2.2 모바일(터치) — 캔버스가 손가락 제스처를 직접 받고, 좌우 패널은 하단 시트로 연다 */
+.fx-vp{touch-action:none;}
+.fx-scrim{display:none;}
+.fx-mtool .ic-m{display:none;}
+@media (max-width:900px){.fx-mtool .ic-d{display:none;}.fx-mtool .ic-m{display:inline;}}
+@media (max-width:900px){
+  .fx{height:100dvh;}
+  .fx-top{gap:2px;padding:0 6px;}
+  .fx-top .logo,#cvBtnPins,#cvBtnFit,.fx-zoom,#cvZOut,#cvZIn{display:none;}
+  .fx-pages{margin:0 4px;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;}
+  .fx-pages::-webkit-scrollbar{display:none;}
+  .fx-pages button{padding:0 10px;height:30px;}
+  .fx-present{padding:0 9px;}
+  .fx-present span{display:none;}
+  body.sheet-left .fx-left,body.sheet-right .fx-right{display:block;position:fixed;left:0;right:0;bottom:0;max-height:64dvh;z-index:310;border:0;border-radius:14px 14px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.25);overflow:auto;padding-bottom:env(safe-area-inset-bottom);font-size:13px;}
+  body.sheet-left .fx-left::before,body.sheet-right .fx-right::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:#d0d0d0;margin:8px auto 2px;}
+  body.sheet-left .fx-scrim,body.sheet-right .fx-scrim{display:block;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.28);}
+  .fx-help{display:none;}
+  .fx-layer,.fx-page{padding-top:9px;padding-bottom:9px;}
+  .pin{width:30px;height:30px;margin-top:-30px;line-height:26px;}
+  .fx-pbar{bottom:calc(16px + env(safe-area-inset-bottom));}
+}
+body.present .fx-left,body.present .fx-right,body.present .fx-scrim{display:none!important;}
+</style>
+
+<!-- ===================== [PROJECT STYLES] — 프로젝트 디자인 시스템 ===================== -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/* 나비선교회 물품후원 카드뉴스 v0.1 — 접두어 a- 로 격리. 1080×1350
+   2026-10-19 기도카드 카드뉴스와 같은 체계: 바깥 여백 96 · 윗줄 80~120 · 작은 제목 248 · 제목 312 · 아래줄 1238~1270
+   글자 단계(크기/줄 간격): 표지 제목 120/136(1.13, 어제 카드와 통일) · 장 제목 80/96(1.2) · 칸 제목 40/52(1.3) · 큰 본문 32/48(1.5) · 표 본문 30/46(1.53) · 본문 26/40(1.54) · 작은 본문 24/36(1.5) · 이름표 22/34(1.55)
+   여러 줄 글은 모두 왼쪽 정렬, 번호·아이콘 줄은 격자(번호 칸 + 글 칸)로 내어쓰기
+   자간: 제목 -0.04em · 본문 -0.02em · 이름표 +0.04em / 숫자 고정 폭 */
+.a-card{--blue:#0068B0;--sky:#0098E0;--navy:#084090;--lime:#A8C800;--paper:#F7F5EE;--ink2:#4A5878;--line:#D9DEE6;--pale:#EAF4FB;
+  --ls-head:-.04em;--ls-body:-.02em;--ls-label:.04em;
+  position:relative;width:100%;height:100%;box-sizing:border-box;overflow:hidden;
+  padding:80px 96px 0;background:var(--paper);color:var(--navy);
+  font-family:Pretendard,"Pretendard Variable",-apple-system,"Apple SD Gothic Neo",sans-serif;
+  word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;}
+.a-card *{box-sizing:border-box;}
+.a-card.a-dark{background:var(--navy);color:#fff;}
+/* 은은한 빛 — 대비는 빛이 가장 진한 곳의 섞인 색으로 계산 */
+.a-card::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(1100px 700px at 100% 0%,rgba(0,152,224,.10),transparent 60%);}
+.a-card.a-dark::before{background:radial-gradient(1000px 800px at 100% 0%,rgba(0,152,224,.10),transparent 62%),radial-gradient(700px 600px at 0% 100%,rgba(0,104,176,.20),transparent 60%);}
+
+/* 날개 곡선 — 카드 오른쪽 위 바깥에서 들어오는 직접 그린 선. 파랑 계열 한 가지(로고의 색 구성을 흉내 내지 않도록 연두는 섞지 않음) */
+.a-wing{position:absolute;left:0;top:0;width:1080px;height:1350px;pointer-events:none;z-index:0;}
+.a-card > :not(.a-wing):not(.a-foot):not(.a-toc):not(.a-sign){position:relative;z-index:1;}
+
+/* 윗줄 */
+.a-top{display:flex;justify-content:space-between;align-items:center;height:40px;
+  font-size:24px;line-height:40px;font-weight:600;letter-spacing:var(--ls-body);color:var(--ink2);}
+.a-top b{color:var(--navy);font-weight:800;margin-right:8px;}
+.a-top .a-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--sky);margin-right:16px;vertical-align:2px;}
+.a-num{letter-spacing:var(--ls-label);}
+.a-num em{font-style:normal;color:var(--blue);font-weight:800;}
+.a-dark .a-top{color:#C9D6EE;}
+.a-dark .a-top b{color:#fff;}
+.a-dark .a-num em{color:var(--lime);}
+
+/* 제목 체계 */
+.a-kick{margin-top:128px;height:32px;display:flex;align-items:center;gap:16px;font-size:26px;line-height:32px;font-weight:700;letter-spacing:var(--ls-label);color:var(--blue);}
+.a-kick i{display:block;width:40px;height:4px;border-radius:2px;background:var(--blue);}
+.a-dark .a-kick{color:var(--lime);}
+.a-dark .a-kick i{background:var(--lime);}
+.a-h2{margin:32px 0 0;font-size:80px;line-height:96px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.a-h2 span{color:var(--blue);}
+.a-dark .a-h2{color:#fff;}
+.a-dark .a-h2 span{color:var(--lime);}
+.a-lead{margin:32px 0 0;font-size:32px;line-height:48px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+.a-lead strong{color:var(--navy);font-weight:700;}
+.a-dark .a-lead{color:#C9D6EE;}
+.a-dark .a-lead strong{color:#fff;}
+
+/* 아래줄 */
+.a-foot{position:absolute;left:96px;right:96px;bottom:80px;height:32px;display:flex;justify-content:space-between;align-items:center;z-index:2;}
+.a-prog{display:flex;gap:8px;}
+.a-prog i{display:block;width:40px;height:6px;border-radius:3px;background:#D5DCE8;}
+.a-prog i.on{background:var(--blue);width:72px;}
+.a-dark .a-prog i{background:rgba(255,255,255,.22);}
+.a-dark .a-prog i.on{background:var(--lime);}
+.a-foot span{font-size:22px;line-height:32px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-label);}
+.a-dark .a-foot span{color:#C9D6EE;}
+
+/* [확인 필요] 표시 — 연두 바탕 + 남색 글자 */
+.a-tbd{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:20px;flex-shrink:0;
+  background:var(--lime);color:var(--navy);font-size:22px;font-weight:800;letter-spacing:var(--ls-body);white-space:nowrap;vertical-align:middle;}
+.a-tbd::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--navy);}
+.a-ph{border:2px dashed rgba(0,152,224,.55);background:rgba(0,152,224,.06);border-radius:24px;color:var(--ink2);}
+
+/* 표(사실 칸) — 2장·4장·6장 공통 */
+.a-facts{margin:0;border-top:2px solid var(--navy);}
+.a-fact{display:grid;grid-template-columns:208px 1fr;align-items:center;min-height:80px;padding:16px 0;border-bottom:1px solid var(--line);}
+.a-fact dt{font-size:24px;line-height:40px;font-weight:700;color:var(--blue);letter-spacing:var(--ls-body);}
+.a-fact dd{margin:0;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:30px;line-height:46px;font-weight:700;color:var(--navy);letter-spacing:var(--ls-body);}
+.a-fact dd em{font-style:normal;font-weight:600;color:var(--ink2);}
+
+/* 선 그림 아이콘 칸 */
+.a-ic{width:72px;height:72px;border-radius:22px;background:var(--pale);display:grid;place-items:center;flex-shrink:0;}
+.a-ic svg{width:44px;height:44px;display:block;}
+
+/* ── A-01 표지 ── */
+.a-cover .a-logo{margin-top:96px;margin-left:-44px;width:232px;height:auto;display:block;} /* 왼쪽 투명 여백 79/414 × 232 = 44px → 보이는 왼쪽 끝을 96px 선에 맞춤 */
+.a-cover .a-ck{margin-top:72px;height:32px;font-size:26px;line-height:32px;font-weight:700;letter-spacing:.12em;color:var(--blue);display:flex;align-items:center;gap:16px;}
+.a-cover .a-ck i{display:block;width:48px;height:4px;border-radius:2px;background:var(--blue);}
+.a-h1{margin:24px 0 0;font-size:120px;line-height:136px;font-weight:900;letter-spacing:var(--ls-head);color:var(--navy);}
+.a-h1 span{color:var(--blue);}
+.a-cover .a-lead{margin-top:40px;}
+.a-toc{position:absolute;left:96px;right:96px;bottom:160px;display:flex;border-top:2px solid var(--navy);padding-top:24px;z-index:2;}
+.a-toc div{flex:1;font-size:24px;line-height:36px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-body);}
+.a-toc div b{display:block;font-size:20px;line-height:24px;font-weight:800;color:var(--blue);letter-spacing:var(--ls-label);margin-bottom:8px;}
+
+/* ── A-02 누구를 위해 ── */
+.a-who .a-lead{margin-top:32px;}
+.a-who .a-facts{margin-top:48px;}
+.a-who .a-fact{min-height:96px;}
+
+/* ── A-03 참여 방법 ── */
+.a-lanes{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.a-lane{background:#fff;border-radius:28px;padding:32px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 18px 40px -24px rgba(8,64,144,.28);}
+.a-lane .a-lh{display:flex;align-items:center;justify-content:space-between;}
+.a-lane .a-ll{font-size:22px;line-height:34px;font-weight:800;letter-spacing:var(--ls-label);color:var(--blue);}
+.a-lane h3{margin:16px 0 0;font-size:40px;line-height:52px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.a-flow{margin:24px 0 0;padding:0;list-style:none;border-top:1px solid var(--line);}
+.a-flow li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);}
+.a-flow li:last-child{border-bottom:0;padding-bottom:0;}
+.a-flow b{width:48px;height:48px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:800;}
+.a-flow span{font-size:26px;line-height:36px;font-weight:600;color:var(--navy);letter-spacing:var(--ls-body);}
+.a-flow span em{font-style:normal;color:var(--blue);font-weight:800;}
+.a-how{margin-top:48px;}
+.a-flow .a-tbd{height:32px;font-size:18px;padding:0 12px;gap:6px;margin-left:8px;vertical-align:middle;}
+
+/* ── A-04 후원금도 함께 ── */
+.a-two{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.a-wcard{border-radius:28px;padding:32px;color:#fff;}
+.a-wcard.a-w1{background:#0068B0;}
+.a-wcard.a-w2{background:#084090;}
+.a-wcard .a-wl{font-size:22px;line-height:34px;font-weight:800;letter-spacing:var(--ls-label);color:#fff;}
+.a-wcard h3{margin:16px 0 0;font-size:40px;line-height:52px;font-weight:800;letter-spacing:var(--ls-head);}
+.a-wcard p{margin:16px 0 0;font-size:26px;line-height:40px;font-weight:500;color:#fff;letter-spacing:var(--ls-body);}
+.a-give .a-facts{margin-top:48px;}
+
+/* ── A-05 기도제목 (어두운 장) ── */
+.a-pray{margin:48px 0 0;padding:0;list-style:none;}
+.a-pray li{display:grid;grid-template-columns:80px 1fr;align-items:center;padding:24px 0;border-bottom:1px solid rgba(201,214,238,.22);}
+.a-pray li:first-child{border-top:1px solid rgba(201,214,238,.22);}
+.a-pray .a-pn{font-size:40px;line-height:48px;font-weight:900;color:var(--lime);letter-spacing:var(--ls-body);}
+.a-pray .a-pt{font-size:32px;line-height:48px;font-weight:600;color:#fff;letter-spacing:var(--ls-body);display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.a-thanks{margin-top:40px;font-size:28px;line-height:40px;font-weight:600;color:#C9D6EE;letter-spacing:var(--ls-body);}
+
+/* ── A-06 단톡방 초대 ── */
+.a-chips{margin-top:48px;display:flex;gap:16px;}
+.a-chip{display:flex;align-items:center;gap:16px;height:64px;padding:0 24px 0 12px;border-radius:32px;background:#fff;box-shadow:0 10px 24px -18px rgba(8,64,144,.4);
+  font-size:26px;font-weight:700;color:var(--navy);letter-spacing:var(--ls-body);}
+.a-chip .a-ic{width:44px;height:44px;border-radius:50%;}
+.a-chip .a-ic svg{width:28px;height:28px;}
+.a-join{margin-top:48px;background:#fff;border-radius:28px;padding:32px;display:grid;grid-template-columns:1fr 264px;gap:32px;align-items:center;box-shadow:0 18px 40px -26px rgba(8,64,144,.3);}
+.a-join dl{margin:0;}
+.a-row{display:grid;grid-template-columns:136px 1fr;align-items:center;min-height:96px;padding:16px 0;border-bottom:1px solid var(--line);}
+.a-row:last-child{border-bottom:0;}
+.a-row dt{font-size:24px;line-height:40px;font-weight:700;color:var(--blue);letter-spacing:var(--ls-body);}
+.a-row dd{margin:0;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:24px;line-height:36px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-body);}
+.a-qr{width:264px;height:264px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;}
+.a-qr svg{width:64px;height:64px;display:block;}
+.a-qr .a-tbd{height:32px;font-size:18px;padding:0 12px;gap:6px;}
+.a-sign{position:absolute;left:96px;right:96px;bottom:160px;display:flex;align-items:flex-end;justify-content:space-between;z-index:2;}
+.a-sign img{width:150px;height:auto;display:block;margin-left:-29px;margin-bottom:-17px;} /* 투명 여백 보정: 왼쪽 79/414×150=29px, 아래 48/372×135=17px → 보이는 왼쪽 끝 96px 선, 보이는 아래 끝을 오른쪽 글자 아래선에 맞춤 */
+.a-sign div{text-align:left;font-size:24px;line-height:36px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-body);}
+.a-sign div b{display:block;font-size:36px;line-height:48px;font-weight:800;color:var(--navy);letter-spacing:var(--ls-head);}
+
+/* ── B-03 업그레이드안 — 접두어 d- (B-01을 복사해 다듬음). 1080×1350
+   주인공 = 평면 일러스트(휴대폰 속 대화 + 쇼핑백·선물 상자·하트·반짝임), 면적 1080×608 (전체의 48.6%)
+   글자 단계: 제목 72/88(1.22) · 부제 26/40(1.54) · 말풍선 22/32(1.45) · 이름 20/28 · 윗줄 24/40
+   색: 브랜드 파랑 계열 + 따뜻한 보조색(살구). 연두는 쓰지 않음(로고 날개 색 흉내 방지, [확인 필요] 전용) */
+.d-card{--blue:#0068B0;--sky:#0098E0;--navy:#084090;--paper:#F7F5EE;--ink2:#4A5878;--pale:#EAF4FB;
+  --ls-head:-.04em;--ls-body:-.02em;--ls-label:.04em;
+  position:relative;width:100%;height:100%;box-sizing:border-box;overflow:hidden;
+  padding:80px 96px 0;background:linear-gradient(180deg,#F7F5EE 0%,#F4F2EA 100%);color:var(--navy);
+  font-family:Pretendard,"Pretendard Variable",-apple-system,"Apple SD Gothic Neo",sans-serif;
+  word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;}
+.d-card *{box-sizing:border-box;}
+.d-card > *{position:relative;z-index:1;}
+.d-top{display:flex;justify-content:space-between;align-items:center;height:40px;font-size:24px;line-height:40px;font-weight:600;letter-spacing:var(--ls-body);color:var(--ink2);}
+.d-top b{color:var(--navy);font-weight:800;margin-right:8px;}
+.d-top .d-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--sky);margin-right:16px;vertical-align:2px;}
+.d-num{letter-spacing:var(--ls-label);font-variant-numeric:tabular-nums;}
+.d-num em{font-style:normal;color:var(--blue);font-weight:800;}
+.d-foot{position:absolute;left:96px;right:96px;bottom:80px;height:32px;display:flex;justify-content:space-between;align-items:center;}
+.d-prog{display:flex;gap:8px;}
+.d-prog i{display:block;width:40px;height:6px;border-radius:3px;background:#D5DCE8;}
+.d-prog i.on{background:var(--blue);width:72px;}
+.d-foot span{font-size:22px;line-height:32px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-label);}
+.d-kick{margin-top:80px;height:32px;display:flex;align-items:center;gap:16px;font-size:26px;line-height:32px;font-weight:700;letter-spacing:var(--ls-label);color:var(--blue);}
+.d-kick i{display:block;width:40px;height:4px;border-radius:2px;background:var(--blue);}
+.d-h1{margin:32px 0 0;font-size:72px;line-height:88px;font-weight:800;letter-spacing:-.04em;color:var(--navy);}
+.d-h1 span{color:var(--blue);}
+/* 로고: 오른쪽 위, 보이는 오른쪽 끝 x=984 · 보이는 위 끝 y=200(작은 제목 위선) */
+.d-card > img.d-logo{position:absolute;z-index:2;width:150px;height:auto;left:865px;top:195px;} /* 투명 여백 보정: 왼쪽 79/414×150=28.6 → 보이는 왼쪽 894, 위 15/372×134.8=5.4 → 보이는 위 200 */
+/* 그림 — y 464~1072 */
+.d-art{position:absolute;z-index:1;left:0;top:464px;width:1080px;height:608px;}
+.d-art svg.d-layer{position:absolute;left:0;top:0;width:1080px;height:608px;display:block;}
+.d-phone{position:absolute;left:300px;top:16px;width:480px;height:576px;border-radius:64px;background:#084090;padding:14px;
+  box-shadow:0 40px 60px -36px rgba(8,64,144,.55);}
+.d-screen{position:relative;width:100%;height:100%;border-radius:50px;background:#F3F8FC;padding:56px 24px 0;overflow:hidden;display:flex;flex-direction:column;}
+.d-notch{position:absolute;left:50%;top:14px;width:112px;height:24px;margin-left:-56px;border-radius:12px;background:#084090;}
+.d-name{font-size:20px;line-height:28px;font-weight:700;color:var(--ink2);letter-spacing:var(--ls-body);margin-bottom:8px;}
+.d-msg{display:flex;align-items:center;gap:8px;padding:12px 20px;font-size:22px;line-height:32px;font-weight:600;letter-spacing:var(--ls-body);white-space:nowrap;}
+.d-msg svg{width:24px;height:24px;display:block;flex-shrink:0;}
+.d-in{align-self:flex-start;background:#fff;color:var(--navy);border-radius:6px 24px 24px 24px;box-shadow:0 8px 16px -12px rgba(8,64,144,.35);}
+.d-out{align-self:flex-end;background:var(--blue);color:#fff;border-radius:24px 6px 24px 24px;}
+.d-g8{height:8px;flex-shrink:0;}.d-g16{height:16px;flex-shrink:0;}
+.d-input{position:absolute;left:24px;right:24px;bottom:24px;height:56px;border-radius:28px;background:#fff;box-shadow:0 1px 0 rgba(8,64,144,.06);display:flex;align-items:center;justify-content:space-between;padding:0 8px;}
+.d-input i{width:40px;height:40px;border-radius:50%;background:var(--pale);display:block;}
+.d-input i.d-send{background:var(--blue);}
+/* 부제 — 아래선 y=1190 (아래에서 160, 6장 서명과 같은 높이) */
+.d-sub{position:absolute;z-index:1;left:96px;right:96px;bottom:160px;margin:0;font-size:26px;line-height:40px;font-weight:500;color:var(--ink2);letter-spacing:var(--ls-body);}
+.d-sub strong{color:var(--navy);font-weight:700;}
+
+.d-type{align-self:flex-end;margin-top:16px;display:flex;gap:8px;align-items:center;height:48px;padding:0 20px;border-radius:24px 6px 24px 24px;background:var(--blue);flex-shrink:0;}
+.d-type i{width:10px;height:10px;border-radius:50%;background:#fff;display:block;}
+.d-type i:nth-child(1){opacity:.7}.d-type i:nth-child(2){opacity:.85}
+.d-tagtxt{font-family:Pacifico,"Dancing Script",cursive;}
+
+/* ── v2 새 스타일 2~3장 — 접두어 e-. 1080×1350. 표지(d-)와 같은 바탕·그림체
+   글자 단계: 제목 64/80(1.25, 2·3장 같음) · 안내 32/48(1.5) · 칸 제목 40/52 · 카드 이름 32/48 · 본문 26/40 · 예시 24/36 · 표시 22/34
+   기준선 x=96/984 · 작은 제목 y=200 · 간격 8의 배수 · 연두는 [확인 필요] 전용 */
+.e-card{--blue:#0068B0;--sky:#0098E0;--navy:#084090;--ink2:#4A5878;--pale:#EAF4FB;--line:#E3E8EF;
+  --ls-head:-.04em;--ls-body:-.02em;--ls-label:.04em;
+  position:relative;width:100%;height:100%;box-sizing:border-box;overflow:hidden;
+  padding:80px 96px 0;background:linear-gradient(180deg,#F7F5EE 0%,#F4F2EA 100%);color:var(--navy);
+  font-family:Pretendard,"Pretendard Variable",-apple-system,"Apple SD Gothic Neo",sans-serif;
+  word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;}
+.e-card *{box-sizing:border-box;}
+.e-card::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 560px at 50% 66%,rgba(0,152,224,.10),transparent 70%);}
+.e-card > *{position:relative;z-index:1;}
+.e-top{display:flex;justify-content:space-between;align-items:center;height:40px;font-size:24px;line-height:40px;font-weight:600;letter-spacing:var(--ls-body);color:var(--ink2);}
+.e-top b{color:var(--navy);font-weight:800;margin-right:8px;}
+.e-top .e-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--sky);margin-right:16px;vertical-align:2px;}
+.e-num{letter-spacing:var(--ls-label);}
+.e-num em{font-style:normal;color:var(--blue);font-weight:800;}
+.e-foot{position:absolute;left:96px;right:96px;bottom:80px;height:32px;display:flex;justify-content:space-between;align-items:center;}
+.e-prog{display:flex;gap:8px;}
+.e-prog i{display:block;width:40px;height:6px;border-radius:3px;background:#D5DCE8;}
+.e-prog i.on{background:var(--blue);width:72px;}
+.e-foot span{font-size:22px;line-height:32px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-label);}
+.e-kick{margin-top:80px;height:32px;display:flex;align-items:center;gap:16px;font-size:26px;line-height:32px;font-weight:700;letter-spacing:var(--ls-label);color:var(--blue);}
+.e-kick i{display:block;width:40px;height:4px;border-radius:2px;background:var(--blue);}
+.e-h2{margin:32px 0 0;font-size:64px;line-height:80px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.e-h2 span{color:var(--blue);}
+.e-lead{margin:32px 0 0;font-size:32px;line-height:48px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+.e-deco{position:absolute;z-index:1;pointer-events:none;}
+/* [확인 필요] 표시 */
+.e-tbd{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:20px;flex-shrink:0;background:#A8C800;color:#084090;font-size:22px;font-weight:800;letter-spacing:var(--ls-body);white-space:nowrap;}
+.e-tbd::before{content:"";width:8px;height:8px;border-radius:50%;background:#084090;}
+.e-tbd.sm{height:32px;font-size:18px;padding:0 12px;gap:6px;}
+
+/* ── A-02 ── */
+.e-count{margin-top:32px;display:inline-flex;align-items:center;gap:16px;height:56px;padding:0 24px 0 8px;border-radius:28px;background:#fff;
+  box-shadow:0 8px 24px -16px rgba(8,64,144,.45);font-size:26px;line-height:40px;font-weight:600;color:var(--ink2);letter-spacing:var(--ls-body);}
+.e-count .e-ci{width:40px;height:40px;border-radius:50%;background:var(--pale);display:grid;place-items:center;}
+.e-count .e-ci svg{width:24px;height:24px;display:block;}
+.e-count b{color:var(--navy);font-weight:800;}
+.e-goods{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.e-good{background:#fff;border-radius:32px;padding:24px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 24px 48px -28px rgba(8,64,144,.35);}
+.e-good .e-ill{height:248px;border-radius:24px;background:var(--pale);display:block;overflow:hidden;}
+.e-good .e-ill svg{width:100%;height:100%;display:block;}
+.e-good h3{margin:24px 0 0;font-size:32px;line-height:48px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.e-good p{margin:8px 0 0;font-size:24px;line-height:36px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+
+/* ── A-03 ── */
+.e-lanes{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.e-lane{background:#fff;border-radius:32px;padding:32px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 24px 48px -28px rgba(8,64,144,.35);}
+.e-lane h3{margin:0;font-size:40px;line-height:52px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.e-steps{margin:24px 0 0;padding:0;list-style:none;}
+.e-step{position:relative;display:grid;grid-template-columns:112px 1fr;gap:24px;align-items:center;}
+.e-step + .e-step{margin-top:32px;}
+.e-step:not(:last-child)::after{content:"";position:absolute;left:55px;top:120px;height:16px;width:3px;border-radius:2px;
+  background:repeating-linear-gradient(180deg,var(--sky) 0 6px,transparent 6px 12px);} /* 동그라미 아래 8 ~ 다음 동그라미 위 8 사이 점선 */
+.e-sc{width:112px;height:112px;border-radius:50%;background:var(--pale);display:block;}
+.e-sc svg{width:112px;height:112px;display:block;}
+.e-st{font-size:26px;line-height:40px;font-weight:600;letter-spacing:var(--ls-body);color:var(--navy);}
+.e-st em{font-style:normal;color:var(--blue);font-weight:800;}
+.e-st .e-tbd{margin-left:8px;vertical-align:middle;}
+.e-deliv{margin-top:32px;display:flex;align-items:center;gap:24px;height:80px;padding:0 24px 0 32px;border-radius:24px;background:#fff;
+  box-shadow:0 1px 0 rgba(8,64,144,.06),0 16px 32px -24px rgba(8,64,144,.35);font-size:26px;line-height:40px;letter-spacing:var(--ls-body);}
+.e-deliv b{font-weight:800;color:var(--navy);}
+.e-deliv span:not(.e-tbd){flex:1;font-weight:500;color:var(--ink2);}
+
+/* ── 최종 시안 3~6장 추가 — 접두어 e- (2·3장과 같은 토큰) ── */
+.e-deliv span.e-dv{flex:1;font-weight:500;color:var(--ink2);}
+.e-trill{position:absolute;z-index:1;right:96px;top:216px;width:224px;height:208px;display:block;} /* 제목 오른쪽 작은 그림 (5·6장) */
+/* A-04 */
+.e-two{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.e-way{background:#fff;border-radius:32px;padding:24px 32px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 24px 48px -28px rgba(8,64,144,.35);}
+.e-wh{display:flex;align-items:center;gap:16px;height:48px;}
+.e-wi{width:48px;height:48px;border-radius:50%;background:var(--pale);display:grid;place-items:center;flex-shrink:0;}
+.e-wi svg{width:28px;height:28px;display:block;}
+.e-way h3{margin:0;font-size:32px;line-height:48px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.e-way p{margin:8px 0 0;font-size:26px;line-height:40px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+.e-acc{margin-top:32px;background:#fff;border-radius:32px;padding:32px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 24px 48px -28px rgba(8,64,144,.35);}
+.e-accp{position:relative;background:var(--pale);border-radius:24px;padding:32px;height:256px;}
+.e-al{font-size:22px;line-height:32px;font-weight:700;letter-spacing:var(--ls-label);color:var(--blue);}
+.e-bank{margin-top:8px;font-size:28px;line-height:40px;font-weight:700;letter-spacing:var(--ls-body);color:var(--navy);}
+.e-accno{font-size:52px;line-height:64px;font-weight:800;letter-spacing:.02em;color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums lining-nums;}
+.e-accno .e-hy{display:inline-block;margin:0 2px;color:var(--blue);}
+.e-owner{margin-top:8px;font-size:26px;line-height:40px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+.e-owner b{font-weight:700;color:var(--navy);margin-left:8px;}
+.e-accp svg.e-env{position:absolute;right:32px;top:48px;width:176px;height:160px;display:block;}
+.e-info{margin:24px 0 0;}
+.e-ir{display:grid;grid-template-columns:160px 1fr;gap:16px;font-size:26px;line-height:40px;letter-spacing:var(--ls-body);}
+.e-ir + .e-ir{margin-top:16px;}
+.e-ir dt{font-weight:700;color:var(--navy);}
+.e-ir dd{margin:0;font-weight:500;color:var(--ink2);}
+/* A-05 */
+.e-pray{margin:32px 0 0;padding:32px;list-style:none;background:#fff;border-radius:32px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 24px 48px -28px rgba(8,64,144,.35);}
+.e-pi + .e-pi{margin-top:24px;padding-top:23px;border-top:1px solid var(--line);}
+.e-pi h3{display:flex;align-items:center;gap:16px;margin:0;font-size:28px;line-height:40px;font-weight:800;letter-spacing:-.03em;color:var(--navy);}
+.e-pn{width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;font-size:20px;line-height:40px;font-weight:800;text-align:center;flex-shrink:0;letter-spacing:0;}
+.e-pi p{margin:8px 0 0 56px;font-size:24px;line-height:36px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);text-wrap:pretty;}
+/* A-06 */
+.e-chips{margin-top:48px;display:flex;gap:16px;}
+.e-chip{display:flex;align-items:center;gap:16px;height:64px;padding:0 28px 0 12px;border-radius:32px;background:#fff;box-shadow:0 8px 24px -16px rgba(8,64,144,.45);font-size:26px;line-height:40px;font-weight:800;letter-spacing:var(--ls-body);color:var(--navy);}
+.e-chip .e-wi{width:40px;height:40px;}
+.e-chip .e-wi svg{width:24px;height:24px;}
+.e-join{margin-top:32px;display:grid;grid-template-columns:1fr 337px;gap:32px;align-items:center;background:#fff;border-radius:32px;padding:32px;box-shadow:0 1px 0 rgba(8,64,144,.06),0 24px 48px -28px rgba(8,64,144,.35);}
+.e-join dl{margin:0;}
+.e-jr + .e-jr{margin-top:24px;padding-top:23px;border-top:1px solid var(--line);}
+.e-jr dt{font-size:22px;line-height:32px;font-weight:700;letter-spacing:var(--ls-label);color:var(--blue);}
+.e-jr dd{margin:4px 0 0;font-size:28px;line-height:44px;font-weight:800;letter-spacing:var(--ls-body);color:var(--navy);white-space:nowrap;}
+.e-tel{display:block;font-size:36px;line-height:48px;letter-spacing:.02em;font-variant-numeric:tabular-nums lining-nums;}
+.e-qrw{text-align:center;}
+.e-qrbox{width:337px;border:2px solid #D5DCE8;border-radius:20px;overflow:hidden;background:#fff;}
+.e-qrbox svg{width:333px;height:333px;display:block;}
+.e-qrc{margin-top:16px;font-size:22px;line-height:32px;font-weight:600;letter-spacing:var(--ls-body);color:var(--ink2);}
+.e-card > img.e-slogo{position:absolute;z-index:2;width:150px;height:auto;left:67px;top:1073px;} /* 보이는 왼쪽 67+28.6=96 · 보이는 위 1078.4 · 보이는 아래 1190 */
+.e-stext{position:absolute;right:96px;bottom:160px;text-align:right;margin:0;}
+.e-stext b{display:block;font-size:36px;line-height:48px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.e-stext span{display:block;font-size:26px;line-height:40px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+/* 2장 예시: 결정 문구를 한 줄로(22/34) */
+.e-good p{font-size:24px;line-height:36px;white-space:nowrap;}
+.e-sep{font-weight:300;color:#9AA7BD;margin:0 4px;}
+.e-goods{grid-template-columns:repeat(3,minmax(0,1fr));} /* 24px 예시가 칸 너비를 밀지 않게 세 칸 같은 너비 유지 */
+.e-goods{gap:16px;} .e-good{padding:20px;} /* 2장 (나): 칸 사이 16, 안쪽 여백 20 */
+
+/* ── 수정본: 6장 서명(로고 없음) — 정보 칸 아래 왼쪽 기준선, 한 줄 ── */
+.e-sign1{margin:48px 0 0;display:flex;align-items:baseline;gap:16px;}
+.e-sign1 b{font-size:32px;line-height:48px;font-weight:800;letter-spacing:var(--ls-head);color:var(--navy);}
+.e-sign1 span{font-size:26px;line-height:40px;font-weight:500;letter-spacing:var(--ls-body);color:var(--ink2);}
+/* 6장 QR 키움: 칸 하나 10px(37칸 = 370) + 테두리 2 = 374. 왼쪽 정보(386)와 높이가 거의 같아 위아래 균형 */
+.e-join{grid-template-columns:1fr 374px;}
+.e-qrbox{width:374px;}
+.e-qrbox svg{width:370px;height:370px;}
+
+/* ── 수정2: 6장 A안, 그림 줄임 — 위끝 200(작은 제목), 아래끝 536(표시 줄 아래선), 오른쪽 984 ── */
+.e-chat{position:absolute;z-index:1;left:744px;top:200px;width:240px;height:336px;display:block;filter:drop-shadow(0 16px 20px rgba(8,64,144,.18));}
+.e-chat text{font-family:Pretendard,"Pretendard Variable",-apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:-.04em;}
+.e-join{margin-top:48px;} /* 표시 줄(536) 아래 48 → 584 */
+
+/* ── 수정2-b: 6장 서명 뺌 → 정보 칸 키움. 안쪽 여백 48, 줄 사이 40, QR 칸 하나 11px(407) ── */
+.e-join{grid-template-columns:1fr 411px;padding:48px;}
+.e-qrbox{width:411px;}
+.e-qrbox svg{width:407px;height:407px;}
+.e-jr + .e-jr{margin-top:40px;padding-top:39px;}
+/* 수정2-c: 좌우 안쪽 여백 32(글 시작 x 128, 다른 장과 같음), 표시 줄 → 정보 칸 32(4장과 같음) */
+.e-join{padding:48px 32px;margin-top:32px;}
+</style>
+</head>
+<body data-path="HCMG / 나비미니스트리 / 카드뉴스 /" data-file="나비선교회 물품후원 카드뉴스">
+
+<!-- ===================== [CANVAS CONTENT] =====================
+  섹션(cv-sec) = 캔버스의 한 행 묶음. 속성:
+    data-page  = 페이지 탭 이름(예: 현재 / 개선안 1 / 개선안 2). 생략하면 탭 없이 한 페이지.
+    data-title / data-sub = 섹션 제목·보조설명,  data-cols = 한 줄 최대 프레임 수
+  프레임(frame) 속성:
+    data-name, data-w, data-h, data-radius, data-desc(인스펙터 설계 의도)
+    data-badge = asis / tobe / v1 / v2 / v3 / next
+    data-key   = 같은 화면을 페이지끼리 묶는 키(예: lesson). 더블클릭하면 모든 페이지의 같은 key를
+                 열(페이지)×행(데스크탑/모바일)로 나란히 보여 준다. w 600 미만 = 모바일.
+  핀(note): i 요소, class note, data-x/data-y(프레임 내 좌표), data-t(제목), 본문 = 설명
+  좌표(left/top)는 쓰지 않는다 — 엔진이 페이지별로 자동 배치한다.
+================================================================ -->
+<template id="cv-summary">
+  <div class="fx-sec"><div class="fx-h">안내</div><p class="fx-desc">나비선교회 물품후원 카드뉴스 6장(1080×1350) 공개용 사본입니다. 후원 계좌·문의 연락처·단톡방 QR은 가렸습니다.</p></div>
+</template>
+
+<div id="cv-content" hidden>
+  <section class="cv-sec" data-page="카드뉴스" data-title="나비선교회 물품후원 카드뉴스 (1080×1350 · 6장)" data-cols="3">
+    <div class="frame" data-name="A-01 표지" data-key="cover" data-w="1080" data-h="1350" data-badge="final" data-desc="확정 표지(표지 시안 B-03) 그대로. 휴대폰 속 단톡방 대화 둘레로 쇼핑백·소포·선물 상자. 제목 72/88, 로고 오른쪽 위, 부제 아래선 y=1190.">
+      <div class="d-card">
+        <div class="d-top"><div><i class="d-dot"></i><b>나비선교회</b>물품후원</div></div>
+        <div class="d-kick"><i></i>새 단톡방</div>
+        <h1 class="d-h1">필요는 올리고,<br><span>마음은 체크하고</span></h1>
+        <img class="d-logo" src="navi-logo.png" alt="나비선교회 NAVI 로고">
+        <div class="d-art"><svg class="d-layer" viewBox="0 0 1080 608" aria-hidden="true"><defs><radialGradient id="d-glow" cx="540" cy="300" r="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0098E0" stop-opacity=".24"/><stop offset=".55" stop-color="#0098E0" stop-opacity=".12"/><stop offset="1" stop-color="#0098E0" stop-opacity="0"/></radialGradient><radialGradient id="d-warm" cx="184" cy="470" r="150" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6BC9A" stop-opacity=".45"/><stop offset="1" stop-color="#F6BC9A" stop-opacity="0"/></radialGradient></defs><circle cx="540" cy="300" r="330" fill="url(#d-glow)"/><circle cx="184" cy="470" r="150" fill="url(#d-warm)"/><ellipse cx="540" cy="596" rx="380" ry="10" fill="#084090" opacity=".07"/></svg>
+          <div class="d-phone"><div class="d-screen"><i class="d-notch"></i>
+            <div class="d-name">나비선교회</div>
+            <div class="d-msg d-in">형제자매들에게 필요한<br>물품 올려요<svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5l8.5-4 8.5 4v9.5l-8.5 4-8.5-4z"/><path d="M3.5 7.5l8.5 4 8.5-4"/><path d="M12 11.5v9.5"/></svg></div>
+            <div class="d-g16"></div>
+            <div class="d-msg d-out"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>제가 할게요!</div>
+            <div class="d-g8"></div>
+            <div class="d-msg d-out">드릴 물품도 있어요</div>
+            <div class="d-g16"></div>
+            <div class="d-name">나비선교회</div>
+            <div class="d-msg d-in">기도제목도 함께 나눠요<svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.8 3.5c-1.5 2.6-2.9 6-2.9 10L4.3 17l2.9 2.9 3.6-3.6z"/><path d="M13.2 3.5c1.5 2.6 2.9 6 2.9 10l3.6 3.5-2.9 2.9-3.6-3.6z"/></svg></div>
+            <div class="d-type"><i></i><i></i><i></i></div>
+          </div></div><svg class="d-layer" viewBox="0 0 1080 608" aria-hidden="true"><g transform="translate(-28 0)"><path d="M142 368 C142 286, 282 286, 282 368" fill="none" stroke="#C9714E" stroke-width="7" stroke-linecap="round"/><rect x="134" y="320" width="70" height="70" rx="35" fill="#BFDDF2"/><circle cx="169" cy="355" r="14" fill="#F3F8FC"/><rect x="180" y="318" width="34" height="96" rx="10" fill="#0098E0" transform="rotate(-10 197 366)"/><rect x="184" y="306" width="26" height="22" rx="6" fill="#084090" transform="rotate(-10 197 366)"/><rect x="228" y="308" width="44" height="118" rx="22" fill="#EDC48E" transform="rotate(12 250 367)"/><path d="M236 330 l26 -8 M238 354 l26 -8" stroke="#D9A86A" stroke-width="5" stroke-linecap="round" transform="rotate(12 250 367)"/><path d="M124 368 H300 L288 584 Q287 592 279 592 H145 Q137 592 136 584 Z" fill="#F2A57E"/><path d="M124 368 H300 L298 392 H126 Z" fill="#F6BC9A"/><path d="M212 440 c-12-14-36-6-36 12 c0 20 36 38 36 38 s36-18 36-38 c0-18-24-26-36-12z" fill="#fff" opacity=".9"/></g><path d="M904 222 c-12-14-36-6-36 12 c0 20 36 38 36 38 s36-18 36-38 c0-18-24-26-36-12z" fill="#0098E0" transform="translate(-704 -24)"/><path d="M706 116 q-22 -8 -44 2 M708 146 q-24 2 -48 16" fill="none" stroke="#0098E0" stroke-width="5.5" stroke-linecap="round" opacity=".7"/><g transform="rotate(-14 784 126)"><rect x="720" y="70" width="128" height="112" rx="14" fill="#F6BC9A"/><rect x="720" y="70" width="128" height="30" rx="12" fill="#F2A57E"/><rect x="770" y="70" width="28" height="112" fill="#fff" opacity=".85"/></g><rect x="824" y="412" width="144" height="180" rx="16" fill="#0068B0"/><rect x="808" y="372" width="176" height="56" rx="14" fill="#084090"/><rect x="880" y="372" width="32" height="220" fill="#F6BC9A"/><path d="M896 372 C870 326, 824 330, 834 356 C842 376, 878 374, 896 372z" fill="#F2A57E"/><path d="M896 372 C922 326, 968 330, 958 356 C950 376, 914 374, 896 372z" fill="#F2A57E"/><circle cx="896" cy="370" r="12" fill="#C9714E"/><g transform="rotate(-6 896 504)"><rect x="836" y="476" width="120" height="56" rx="28" fill="#fff"/><text x="896" y="501" text-anchor="middle" dominant-baseline="central" class="d-tagtxt" font-size="28" fill="#084090">Cảm ơn</text></g><path d="M150 148 Q156.16 163.84 172 170 Q156.16 176.16 150 192 Q143.84 176.16 128 170 Q143.84 163.84 150 148z" fill="#0098E0" transform="translate(-30 -50)"/><path d="M250 44 Q254.48 55.519999999999996 266 60 Q254.48 64.48 250 76 Q245.52 64.48 234 60 Q245.52 55.519999999999996 250 44z" fill="#F2A57E"/><path d="M968 198 Q971.36 206.64 980 210 Q971.36 213.36 968 222 Q964.64 213.36 956 210 Q964.64 206.64 968 198z" fill="#0098E0"/></svg>
+        </div>
+        <p class="d-sub">한국에서 유학 중인 베트남 형제자매를 위한<br><strong>물품후원 단톡방에 초대합니다.</strong></p>
+        <div class="d-foot"><div class="d-prog"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
+      
+      
+      
+      
+    </div>
+    <div class="frame" data-name="A-02 누구를위해" data-key="who" data-w="1080" data-h="1350" data-badge="final" data-desc="누구에게 가는지(안내) + 어떤 물품인지(그림 카드 3개). 사람·얼굴 없이 물건만. 제목 64/80(2~6장 같음).">
+      <div class="e-card">
+        <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
+        <div class="e-kick"><i></i>누구를 위해</div>
+        <h2 class="e-h2">멀리서 온 형제자매,<br><span>가까이서 채우는 마음</span></h2>
+        <p class="e-lead">보내 주신 물품은 한국에서 유학 중인<br>베트남 형제자매들에게 전해집니다.</p>
+        <div class="e-count"><span class="e-ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15.6 3.5 9.4A4.4 4.4 0 0 1 12 7.3a4.4 4.4 0 0 1 8.5 2.1c0 6.2-8.5 11.1-8.5 11.1z" fill="#0068B0"/></svg></span>함께하는 형제자매 <b>7명</b></div>
+        <div class="e-goods"><div class="e-good"><div class="e-ill"><svg viewBox="0 0 232 248" aria-hidden="true"><ellipse cx="116" cy="214" rx="92" ry="8" fill="#084090" opacity=".07"/><path d="M44 92 Q40 74 52 66 L60 58 L104 58 L112 66 Q124 74 120 92 L126 196 Q127 210 113 210 H51 Q37 210 38 196 Z" fill="#F2A57E" stroke="#C9714E" stroke-width="3"/><path d="M56 58 Q82 44 108 58 L104 70 Q82 62 60 70 Z" fill="#F6BC9A"/><rect x="58" y="66" width="48" height="8" rx="4" fill="#C9714E"/><rect x="56" y="120" width="52" height="44" rx="10" fill="#fff" opacity=".9"/><path d="M82 158 q-2 -14 4 -28" stroke="#EE8F6B" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="88" cy="128" rx="4.5" ry="7" fill="#EE8F6B" transform="rotate(20 88 128)"/><ellipse cx="76" cy="138" rx="4.5" ry="7" fill="#EE8F6B" transform="rotate(-40 76 138)"/><ellipse cx="94" cy="142" rx="4.5" ry="7" fill="#EE8F6B" transform="rotate(50 94 142)"/><ellipse cx="74" cy="152" rx="4.5" ry="7" fill="#EE8F6B" transform="rotate(-50 74 152)"/><g transform="rotate(8 170 112)"><rect x="134" y="62" width="76" height="96" rx="12" fill="#0098E0" stroke="#0068B0" stroke-width="3"/><path d="M134 74 h76 M134 146 h76" stroke="#084090" stroke-width="4" opacity=".35"/><path d="M148 102 q8 -10 16 0 t16 0 t16 0 M148 120 q8 -10 16 0 t16 0 t16 0" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/></g><path d="M132 170 a42 30 0 0 1 84 0 z" fill="#fff"/><path d="M124 168 h100 q-4 42 -50 42 q-46 0 -50 -42z" fill="#0068B0"/><path d="M140 184 h68" stroke="#0098E0" stroke-width="5" stroke-linecap="round"/></svg></div><h3>먹을거리</h3><p>쌀·라면·식료품 등</p></div><div class="e-good"><div class="e-ill"><svg viewBox="0 0 232 248" aria-hidden="true"><ellipse cx="116" cy="214" rx="92" ry="8" fill="#084090" opacity=".07"/><rect x="36" y="160" width="160" height="50" rx="16" fill="#084090"/><path d="M52 185 h128" stroke="#fff" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round" opacity=".55"/><rect x="44" y="114" width="148" height="50" rx="16" fill="#0068B0"/><rect x="44" y="132" width="148" height="14" fill="#0098E0"/><rect x="52" y="68" width="136" height="50" rx="16" fill="#F2A57E" stroke="#C9714E" stroke-width="3"/><path d="M66 93 h108" stroke="#fff" stroke-width="4" stroke-dasharray="8 8" stroke-linecap="round" opacity=".8"/><path d="M196 186 q24 0 20 -30 q-4 -26 -4 -48" stroke="#4A5878" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="204" y="86" width="16" height="24" rx="4" fill="#4A5878"/><path d="M208 86 v-10 M216 86 v-10" stroke="#4A5878" stroke-width="3.5" stroke-linecap="round"/><path d="M64 36 Q66.5 46.5 77 49 Q66.5 51.5 64 62 Q61.5 51.5 51 49 Q61.5 46.5 64 36z" fill="#0098E0"/></svg></div><h3>생활</h3><p>이불·전기장판·생활용품 등</p></div><div class="e-good"><div class="e-ill"><svg viewBox="0 0 232 248" aria-hidden="true"><ellipse cx="116" cy="214" rx="92" ry="8" fill="#084090" opacity=".07"/><g transform="rotate(-6 104 132)"><rect x="48" y="52" width="120" height="156" rx="12" fill="#0068B0"/><rect x="64" y="52" width="104" height="156" rx="0" fill="#0068B0"/><rect x="80" y="84" width="68" height="32" rx="8" fill="#fff"/><path d="M90 96 h48 M90 106 h32" stroke="#0098E0" stroke-width="4" stroke-linecap="round"/><rect x="40" y="68" width="20" height="10" rx="5" fill="#084090"/><rect x="40" y="96" width="20" height="10" rx="5" fill="#084090"/><rect x="40" y="124" width="20" height="10" rx="5" fill="#084090"/><rect x="40" y="152" width="20" height="10" rx="5" fill="#084090"/><rect x="40" y="180" width="20" height="10" rx="5" fill="#084090"/></g><g transform="rotate(28 176 128)"><rect x="164" y="54" width="24" height="120" rx="4" fill="#F2A57E" stroke="#C9714E" stroke-width="3"/><rect x="164" y="54" width="24" height="16" rx="4" fill="#EE8F6B"/><rect x="164" y="66" width="24" height="8" fill="#C9714E"/><path d="M164 174 h24 l-12 28 z" fill="#F6BC9A"/><path d="M171.5 191.5 h9 l-4.5 10.5 z" fill="#084090"/><path d="M176 76 v94" stroke="#EE8F6B" stroke-width="3"/></g></svg></div><h3>공부</h3><p>노트·필기구·학용품 등</p></div></div>
+        <div class="e-foot"><div class="e-prog"><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
+      
+      
+      
+    </div>
+    <div class="frame" data-name="A-03 참여방법" data-key="how" data-w="1080" data-h="1350" data-badge="final" data-desc="두 갈래 × 세 걸음을 그림(말풍선 → 투표·답장 → 소포)으로. 번호 배지로 순서, 점선으로 이어짐. [확인 필요] 0개.">
+      <div class="e-card">
+        <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
+        <div class="e-kick"><i></i>참여 방법</div>
+        <h2 class="e-h2">어렵지 않아요,<br><span>세 걸음이면 충분해요</span></h2>
+        <div class="e-lanes"><div class="e-lane"><h3>선교회가 올리면</h3><ol class="e-steps"><li class="e-step"><span class="e-sc"><svg viewBox="0 0 112 112" aria-hidden="true"><path d="M30 40 h52 a12 12 0 0 1 12 12 v18 a12 12 0 0 1 -12 12 h-32 l-18 12 l6 -12 h-8 a12 12 0 0 1 -12 -12 v-18 a12 12 0 0 1 12 -12z" fill="#fff" stroke="#0068B0" stroke-width="3"/><path d="M34 56 h44 M34 68 h28" stroke="#0098E0" stroke-width="5" stroke-linecap="round"/><circle cx="20" cy="20" r="18" fill="#084090"/><text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="800" fill="#fff" font-family="Pretendard,-apple-system,sans-serif">1</text></svg></span><span class="e-st">필요한 물품을<br><em>투표</em>로 올려요</span></li><li class="e-step"><span class="e-sc"><svg viewBox="0 0 112 112" aria-hidden="true"><rect x="28" y="30" width="60" height="56" rx="10" fill="#fff" stroke="#0068B0" stroke-width="3"/><rect x="36" y="39" width="10" height="10" rx="3" fill="#0068B0"/><path d="M38.5 44 l2.2 2.2 l3.8 -4.2" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="51" y="41" width="28" height="6" rx="3" fill="#0068B0"/><rect x="36" y="53" width="10" height="10" rx="3" fill="#fff" stroke="#4A5878" stroke-width="2"/><rect x="51" y="55" width="22" height="6" rx="3" fill="#9FB0C8"/><rect x="36" y="67" width="10" height="10" rx="3" fill="#fff" stroke="#4A5878" stroke-width="2"/><rect x="51" y="69" width="26" height="6" rx="3" fill="#9FB0C8"/><circle cx="84" cy="82" r="13" fill="#0068B0"/><path d="M78 82 l4 4 l8 -8.5" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="18" fill="#084090"/><text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="800" fill="#fff" font-family="Pretendard,-apple-system,sans-serif">2</text></svg></span><span class="e-st">후원하고 싶은 물품에<br><em>투표</em>해 주세요</span></li><li class="e-step"><span class="e-sc"><svg viewBox="0 0 112 112" aria-hidden="true"><path d="M24 56 h14 M20 70 h16" stroke="#0098E0" stroke-width="4.5" stroke-linecap="round" opacity=".75"/><g transform="rotate(-10 66 64)"><rect x="42" y="40" width="50" height="46" rx="8" fill="#F6BC9A" stroke="#C9714E" stroke-width="3"/><rect x="43.5" y="41.5" width="47" height="12" rx="6.5" fill="#F2A57E"/><rect x="61" y="41.5" width="12" height="43" fill="#fff" opacity=".85"/></g><circle cx="20" cy="20" r="18" fill="#084090"/><text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="800" fill="#fff" font-family="Pretendard,-apple-system,sans-serif">3</text></svg></span><span class="e-st">물품을<br>전달해요</span></li></ol></div><div class="e-lane"><h3>후원자가 올리면</h3><ol class="e-steps"><li class="e-step"><span class="e-sc"><svg viewBox="0 0 112 112" aria-hidden="true"><path d="M30 40 h52 a12 12 0 0 1 12 12 v18 a12 12 0 0 1 -12 12 h-8 l6 12 l-18 -12 h-32 a12 12 0 0 1 -12 -12 v-18 a12 12 0 0 1 12 -12z" fill="#0068B0"/><path d="M34 56 h44 M34 68 h28" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="20" cy="20" r="18" fill="#084090"/><text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="800" fill="#fff" font-family="Pretendard,-apple-system,sans-serif">1</text></svg></span><span class="e-st">드릴 물품을<br>올려 주세요</span></li><li class="e-step"><span class="e-sc"><svg viewBox="0 0 112 112" aria-hidden="true"><path d="M30 40 h52 a12 12 0 0 1 12 12 v18 a12 12 0 0 1 -12 12 h-32 l-18 12 l6 -12 h-8 a12 12 0 0 1 -12 -12 v-18 a12 12 0 0 1 12 -12z" fill="#fff" stroke="#0068B0" stroke-width="3"/><path d="M44 61 l8 8 l16 -17" stroke="#0068B0" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="20" r="18" fill="#084090"/><text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="800" fill="#fff" font-family="Pretendard,-apple-system,sans-serif">2</text></svg></span><span class="e-st">선교회가<br><em>확인하고 답해요</em></span></li><li class="e-step"><span class="e-sc"><svg viewBox="0 0 112 112" aria-hidden="true"><path d="M24 56 h14 M20 70 h16" stroke="#0098E0" stroke-width="4.5" stroke-linecap="round" opacity=".75"/><g transform="rotate(-10 66 64)"><rect x="42" y="40" width="50" height="46" rx="8" fill="#F6BC9A" stroke="#C9714E" stroke-width="3"/><rect x="43.5" y="41.5" width="47" height="12" rx="6.5" fill="#F2A57E"/><rect x="61" y="41.5" width="12" height="43" fill="#fff" opacity=".85"/></g><circle cx="20" cy="20" r="18" fill="#084090"/><text x="20" y="21" text-anchor="middle" dominant-baseline="central" font-size="20" font-weight="800" fill="#fff" font-family="Pretendard,-apple-system,sans-serif">3</text></svg></span><span class="e-st">물품을<br>전달해요</span></li></ol></div></div>
+        <div class="e-deliv"><b>전달 방법</b><span class="e-dv">택배 또는 직접 전달 · 자세한 곳은 단톡방에서 안내해요</span></div>
+        <div class="e-foot"><div class="e-prog"><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div></div>
+      </div>
+      
+      
+      
+    </div>
+    <div class="frame" data-name="A-04 후원" data-key="give" data-w="1080" data-h="1350" data-badge="final" data-desc="물품을 고르기 어려운 분께 후원이라는 두 번째 길. 계좌를 가장 크게(52px, 고정폭 숫자), 하트 봉투 그림 하나. 금액 없음.">
+      <div class="e-card">
+        <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
+        <div class="e-kick"><i></i>후원</div>
+        <h2 class="e-h2">고르기 어렵다면,<br><span>후원으로 함께해요</span></h2>
+        <div class="e-two">
+          <div class="e-way"><div class="e-wh"><span class="e-wi"><svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5l8.5-4 8.5 4v9.5l-8.5 4-8.5-4z"/><path d="M3.5 7.5l8.5 4 8.5-4"/><path d="M12 11.5v9.5"/></svg></span><h3>물품으로</h3></div><p>단톡방 투표로 물품을<br>골라 주세요</p></div>
+          <div class="e-way"><div class="e-wh"><span class="e-wi"><svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20S3.8 15.3 3.8 9.4A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 8.2 1.8C20.2 15.3 12 20 12 20z"/></svg></span><h3>후원으로</h3></div><p>물품 대신 후원으로도<br>마음을 보탤 수 있어요</p></div>
+        </div>
+        <div class="e-acc">
+          <div class="e-accp">
+            <div class="e-al">후원 계좌</div>
+            <div class="e-bank">○○은행</div>
+            <div class="e-accno">○○○<span class="e-hy">-</span>○○○<span class="e-hy">-</span>○○○○</div>
+            <div class="e-owner">예금주<b>나비선교회</b></div>
+            <svg class="e-env" viewBox="0 0 176 160" aria-hidden="true"><ellipse cx="88" cy="148" rx="72" ry="7" fill="#084090" opacity=".08"/><rect x="40" y="18" width="96" height="84" rx="8" fill="#fff" stroke="#9FB0C8" stroke-width="2"/><path d="M88 50 c-9 -11 -27 -5 -27 9 c0 15 27 28 27 28 s27 -13 27 -28 c0 -14 -18 -20 -27 -9z" fill="#0068B0"/><path d="M18 66 L88 112 L158 66 V132 Q158 140 150 140 H26 Q18 140 18 132 Z" fill="#F2A57E" stroke="#C9714E" stroke-width="3" stroke-linejoin="round"/><path d="M18 138 L72 100 M158 138 L104 100" stroke="#C9714E" stroke-width="3" stroke-linecap="round"/><path d="M160 10 Q162 18 170 20 Q162 22 160 30 Q158 22 150 20 Q158 18 160 10z" fill="#0098E0"/></svg>
+          </div>
+          <dl class="e-info">
+            <div class="e-ir"><dt>후원 방식</dt><dd>정기 후원 · 일시 후원 모두 가능</dd></div>
+            <div class="e-ir"><dt>후원금 쓰임</dt><dd>후원금은 나비선교회 사역 전체에 쓰여요</dd></div>
+          </dl>
+        </div>
+        <div class="e-foot"><div class="e-prog"><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div></div>
+      </div>
+      
+      
+      
+    </div>
+    <div class="frame" data-name="A-05 기도제목" data-key="prayer" data-w="1080" data-h="1350" data-badge="final" data-desc="기도제목 3개를 원문 그대로. 굵은 제목 한 줄 + 설명(24/36). 미색 바탕 — 1~6장 같은 결, 긴 글을 어르신도 편히 읽도록. 촛불(빛) 그림 작게(사람·얼굴 없음).">
+      <div class="e-card">
+        <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
+        <div class="e-kick"><i></i>기도제목</div>
+        <h2 class="e-h2">가장 큰 후원은,<br><span>기도예요</span></h2>
+        <svg class="e-trill" viewBox="0 0 224 208" aria-hidden="true"><defs><radialGradient id="e-hl" cx="112" cy="100" r="96" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#F6BC9A" stop-opacity=".55"/><stop offset=".5" stop-color="#0098E0" stop-opacity=".12"/><stop offset="1" stop-color="#0098E0" stop-opacity="0"/></radialGradient></defs><circle cx="112" cy="100" r="96" fill="url(#e-hl)"/><path d="M112 16 C124 36 134 50 134 66 A22 22 0 0 1 90 66 C90 50 100 36 112 16z" fill="#EE8F6B" stroke="#C9714E" stroke-width="3" stroke-linejoin="round"/><path d="M112 44 C118 54 122 60 122 68 A10 10 0 0 1 102 68 C102 60 106 54 112 44z" fill="#FCE6D6"/><path d="M112 86 V98" stroke="#084090" stroke-width="4" stroke-linecap="round"/><rect x="84" y="98" width="56" height="88" rx="10" fill="#0068B0"/><rect x="94" y="108" width="10" height="64" rx="5" fill="#0098E0"/><rect x="60" y="184" width="104" height="16" rx="8" fill="#084090"/><path d="M40 52 Q42.5 62.5 53 65 Q42.5 67.5 40 78 Q37.5 67.5 27 65 Q37.5 62.5 40 52z" fill="#0098E0"/><path d="M186 96 Q187.8 103.2 195 105 Q187.8 106.8 186 114 Q184.2 106.8 177 105 Q184.2 103.2 186 96z" fill="#F2A57E"/></svg>
+        <p class="e-lead">물품과 함께 기도제목도 단톡방에 올려 드릴게요.<br>마음을 모아 함께 기도해 주세요.</p>
+        <ol class="e-pray"><li class="e-pi"><h3><span class="e-pn">1</span>베트남 유학생들의 학업과 생활을 위해</h3><p>베트남 유학생들에게 배움의 지혜와 건강을 주시고, 필요를 채워 주셔서 학업에 힘쓰도록.</p></li><li class="e-pi"><h3><span class="e-pn">2</span>낯선 땅에서의 적응과 평안을 위해</h3><p>한국에서 생활하는 베트남 유학생들이 언어와 문화의 차이, 외로움 속에서도 하나님의 위로와 평안을 누리며, 좋은 친구와 이웃·동역자들을 만날 수 있도록.</p></li><li class="e-pi"><h3><span class="e-pn">3</span>나비선교회의 사역과 동역자들을 위해</h3><p>나비선교회에 지혜와 사랑을 주셔서 유학생들을 잘 섬기게 하시고, 필요한 동역자와 재정을 채워 주시며, 모든 사역 가운데 복음의 열매를 맺도록.</p></li></ol>
+        <div class="e-foot"><div class="e-prog"><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div></div>
+      </div>
+      
+      
+      
+    </div>
+    <div class="frame" data-name="A-06 단톡방초대" data-key="join" data-w="1080" data-h="1350" data-badge="final" data-desc="마지막 장 = 단톡방에 들어오기. 오른쪽 위 휴대폰 속 단톡방 투표 그림(240×336), 방 이름·QR·문의를 한 칸에. 로고·서명 없음(선교사님 말씀), 정보 칸을 키워 아래 여백을 맞춤.">
+      <div class="e-card">
+        <div class="e-top"><div><i class="e-dot"></i><b>나비선교회</b>물품후원</div></div>
+        <div class="e-kick"><i></i>오픈채팅</div>
+        <h2 class="e-h2">물품후원 단톡방에<br><span>초대합니다</span></h2>
+        <svg class="e-chat" viewBox="0 0 240 336" role="img" aria-label="단톡방 대화 그림: 필요한 물품 투표(쌀·이불·노트)"><rect x="0" y="0" width="240" height="336" rx="36" fill="#084090"/><rect x="10" y="10" width="220" height="316" rx="28" fill="#F3F8FC"/><rect x="84" y="18" width="72" height="14" rx="7" fill="#084090"/><rect x="22" y="44" width="196" height="188" rx="18" fill="#fff"/><text x="36" y="72" dominant-baseline="central" font-size="24" font-weight="800" fill="#084090">필요한 물품 투표</text><rect x="32" y="92" width="176" height="40" rx="12" fill="#EAF4FB"/><circle cx="54" cy="112" r="11" fill="#0068B0"/><path d="M48.5 112 l4 4 l7.5 -8" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="76" y="112" dominant-baseline="central" font-size="24" font-weight="800" fill="#084090">쌀</text><circle cx="54" cy="156" r="10" fill="#fff" stroke="#4A5878" stroke-width="2.5"/><text x="76" y="156" dominant-baseline="central" font-size="24" font-weight="600" fill="#4A5878">이불</text><circle cx="54" cy="200" r="10" fill="#fff" stroke="#4A5878" stroke-width="2.5"/><text x="76" y="200" dominant-baseline="central" font-size="24" font-weight="600" fill="#4A5878">노트</text><path d="M140 248 H212 A6 6 0 0 1 218 254 V266 A18 18 0 0 1 200 284 H140 A18 18 0 0 1 122 266 A18 18 0 0 1 140 248 Z" fill="#0068B0"/><path d="M136 266 l5 5 l9 -10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="160" y="263" width="44" height="6" rx="3" fill="#fff"/><rect x="22" y="296" width="196" height="20" rx="10" fill="#fff"/><circle cx="208" cy="306" r="6" fill="#0068B0"/></svg>
+        <div class="e-chips"><div class="e-chip"><span class="e-wi"><svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5l8.5-4 8.5 4v9.5l-8.5 4-8.5-4z"/><path d="M3.5 7.5l8.5 4 8.5-4"/><path d="M12 11.5v9.5"/></svg></span>물품후원</div><div class="e-chip"><span class="e-wi"><svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20S3.8 15.3 3.8 9.4A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 8.2 1.8C20.2 15.3 12 20 12 20z"/></svg></span>후원</div><div class="e-chip"><span class="e-wi"><svg viewBox="0 0 24 24" fill="none" stroke="#0068B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.8 3.5c-1.5 2.6-2.9 6-2.9 10L4.3 17l2.9 2.9 3.6-3.6z"/><path d="M13.2 3.5c1.5 2.6 2.9 6 2.9 10l3.6 3.5-2.9 2.9-3.6-3.6z"/></svg></span>기도제목</div></div>
+        <div class="e-join">
+          <dl>
+            <div class="e-jr"><dt>카카오톡 오픈채팅</dt><dd>나비 브릿지<span class="e-sep">|</span>유학생 나눔방</dd></div>
+            <div class="e-jr"><dt>들어오는 법</dt><dd>문의해 주시면 안내해 드려요</dd></div>
+            <div class="e-jr"><dt>문의</dt><dd>담당 선교사<span class="e-tel">010-○○○○-○○○○</span></dd></div>
+          </dl>
+          <div class="e-qrw"><div class="e-qrbox"><svg viewBox="0 0 37 37" role="img" aria-label="QR 코드 가림"><rect width="37" height="37" fill="#EEF1F6"/><text x="18.5" y="20" text-anchor="middle" font-size="4" fill="#4A5878" font-family="Pretendard, sans-serif">QR 가림</text></svg></div></div>
+        </div>
+        <div class="e-foot"><div class="e-prog"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div></div>
+      </div>
+      
+      
+      
+      
+    </div>
+  </section>
+</div>
+
+<!-- ===================== [CV ENGINE] 마크업·스크립트 — 수정 금지 ===================== -->
+<svg width="0" height="0" style="position:absolute" id="cv-engine-icons">
+  <symbol id="cv-hand" viewBox="0 0 24 24"><path d="M8 13V5a1.5 1.5 0 0 1 3 0v6M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V5.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5A6.5 6.5 0 0 1 4 16.5L3 13a1.5 1.5 0 0 1 2.7-1.2L8 15"/></symbol>
+  <symbol id="cv-frame" viewBox="0 0 24 24"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></symbol>
+  <symbol id="cv-comment" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 1-4.5 16.8L3 21l1.2-4.5A9 9 0 0 1 12 3z"/></symbol>
+  <symbol id="cv-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></symbol>
+  <symbol id="cv-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="cv-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="cv-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="cv-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="cv-list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="cv-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></symbol>
+  <symbol id="cv-pl" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></symbol>
+  <symbol id="cv-pr" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/></symbol>
+</svg>
+<div class="fx">
+  <div class="fx-top">
+    <div class="logo">CV</div>
+    <button class="fx-tool fx-mtool" id="cvBtnLayers" title="왼쪽 패널 접기/펴기 (Ctrl+\)"><svg class="ic ic-d"><use href="#cv-pl"/></svg><svg class="ic ic-m"><use href="#cv-list"/></svg></button>
+    <button class="fx-tool on" title="이동"><svg class="ic"><use href="#cv-hand"/></svg></button>
+    <button class="fx-tool" id="cvBtnFit" title="전체 보기 (Shift+1)"><svg class="ic"><use href="#cv-frame"/></svg></button>
+    <button class="fx-tool" id="cvBtnPins" title="코멘트 핀 켜기/끄기"><svg class="ic"><use href="#cv-comment"/></svg></button>
+    <div class="fx-file"><span id="cvPath"></span><b id="cvFile"></b></div>
+    <div class="fx-pages" id="cvPages"></div>
+    <button class="fx-tool" id="cvZOut" title="축소">−</button>
+    <span class="fx-zoom" id="cvZLbl">100%</span>
+    <button class="fx-tool" id="cvZIn" title="확대">+</button>
+    <button class="fx-tool fx-mtool" id="cvBtnInfo" title="오른쪽 패널 접기/펴기 (Ctrl+\)"><svg class="ic ic-d"><use href="#cv-pr"/></svg><svg class="ic ic-m"><use href="#cv-info"/></svg></button>
+    <button class="fx-present" id="cvBtnPresent"><svg class="ic"><use href="#cv-play"/></svg><span>발표</span></button>
+  </div>
+  <aside class="fx-left">
+    <div class="fx-sec" id="cvPageSec" hidden><div class="fx-h">페이지</div><div id="cvPageList"></div></div>
+    <div class="fx-sec"><div class="fx-h">레이어 <span id="cvLayerCnt"></span></div><div id="cvLayers"></div></div>
+    <div class="fx-sec fx-help"><div class="fx-h">조작법</div>
+      드래그 — 캔버스 이동<br>휠 — 상하 · <kbd>Shift</kbd>+휠 — 좌우<br><kbd>Ctrl</kbd>+휠 — 확대/축소<br>
+      <kbd>Shift</kbd>+<kbd>1</kbd> 전체 · <kbd>Shift</kbd>+<kbd>2</kbd> 선택 프레임<br>
+      <b>화면 더블클릭 — 페이지별(현재·개선안) 나란히 비교</b><br><kbd>Esc</kbd> 비교 닫기<br>빨간 핀 — 설계 의도</div>
+  </aside>
+  <div class="fx-vp" id="cvVp">
+    <div class="fx-world" id="cvWorld"></div>
+    <div class="fx-hud"><button id="cvHudFit" title="전체 보기"><svg class="ic"><use href="#cv-fit"/></svg></button><button id="cvHud100">100%</button></div>
+    <div class="fx-pbar"><button id="cvPPrev"><svg class="ic"><use href="#cv-left"/></svg></button><span id="cvPLbl"></span><button id="cvPNext"><svg class="ic"><use href="#cv-right"/></svg></button><button id="cvPExit">나가기 Esc</button></div>
+  </div>
+  <aside class="fx-right" id="cvInsp"></aside>
+  <div class="fx-scrim" id="cvScrim"></div>
+</div>
+<script id="cv-engine-js">
+(function () {
+  const GAP = 80, SEC_GAP = 200, SEC_PAD = 60, CMP_COLGAP = 200;
+  const $ = id => document.getElementById(id);
+  const vp = $('cvVp'), world = $('cvWorld'), src = $('cv-content');
+  $('cvPath').textContent = (document.body.dataset.path || '') + ' ';
+  $('cvFile').textContent = document.body.dataset.file || document.title;
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const BADGE = { asis: '현재', tobe: '개선', v1: '개선안 1', v2: '개선안 2', v3: '개선안 3', next: '신규' };
+  const W = f => +f.dataset.w || 1440, H = f => +f.dataset.h || 900, isMob = f => W(f) < 600;
+  const shortName = f => (f.dataset.name || '').replace(/^[A-Z]+-?\d+m?\s*/, '');
+
+  /* ---------- 배치: 페이지별로 section을 위→아래로 쌓는다 ---------- */
+  const secs = [...src.querySelectorAll(':scope > section.cv-sec')];
+  const pages = [];
+  secs.forEach(s => { const p = s.dataset.page || ''; if (!pages.includes(p)) pages.push(p); });
+  const multi = pages.length > 1;
+  const frames = [], notes = [], holders = [], yOf = {};
+  secs.forEach((sec, si) => {
+    const pg = sec.dataset.page || '';
+    const y = yOf[pg] || 0;
+    const fs = [...sec.querySelectorAll(':scope > .frame')];
+    const cols = +sec.dataset.cols || fs.length || 1;
+    let x = SEC_PAD, rowY = y + SEC_PAD, rowH = 0, maxX = 0;
+    fs.forEach((f, i) => {
+      if (i && i % cols === 0) { x = SEC_PAD; rowY += rowH + GAP + 30; rowH = 0; }
+      Object.assign(f.style, { left: x + 'px', top: rowY + 'px', width: W(f) + 'px', height: H(f) + 'px' });
+      if (f.dataset.radius) f.style.borderRadius = f.dataset.radius + 'px';
+      f.dataset.id = f.dataset.id || ('f' + frames.length);
+      f.dataset.sec = si; f.dataset.pg = pg;
+      const clip = document.createElement('div'); clip.className = 'clip';
+      [...f.childNodes].forEach(k => { if (!(k.nodeType === 1 && k.classList.contains('note'))) clip.appendChild(k); });
+      f.prepend(clip);
+      const b = f.dataset.badge;
+      const lab = document.createElement('div'); lab.className = 'flabel';
+      lab.innerHTML = (b ? `<span class="fbadge ${esc(b)}">${esc(BADGE[b] || b)}</span>` : '') + esc(f.dataset.name);
+      f.appendChild(lab);
+      f.querySelectorAll(':scope > .note').forEach(n => {
+        const note = { i: notes.length + 1, f: f.dataset.id, x: +n.dataset.x || 0, y: +n.dataset.y || 0, t: n.dataset.t || '', b: n.innerHTML };
+        const p = document.createElement('div'); p.className = 'pin';
+        p.style.left = note.x + 'px'; p.style.top = (note.y + 26) + 'px'; p.dataset.i = note.i;
+        p.innerHTML = note.i + `<span class="tip">${esc(note.t)}</span>`;
+        f.appendChild(p); note.el = p; notes.push(note); n.remove();
+      });
+      frames.push(f);
+      x += W(f) + GAP; maxX = Math.max(maxX, x - GAP); rowH = Math.max(rowH, H(f));
+    });
+    const secH = rowY + rowH + SEC_PAD - y;
+    const holder = document.createElement('div'); holder.className = 'cv-sec';
+    Object.assign(holder.style, { left: '0px', top: y + 'px', width: (maxX + SEC_PAD) + 'px', height: secH + 'px' });
+    holder.dataset.pg = pg;
+    holder.innerHTML = `<div class="cv-sec-t">${esc(sec.dataset.title || '')}${sec.dataset.sub ? ` <small>${esc(sec.dataset.sub)}</small>` : ''}</div>`;
+    world.appendChild(holder); holders.push(holder);
+    fs.forEach(f => world.appendChild(f));
+    yOf[pg] = y + secH + SEC_GAP;
+  });
+  src.remove();
+
+  /* ---------- 상태 ---------- */
+  let curPage = pages[0], selId = null, cmp = null; // cmp = { key, layer, items, cols }
+  const pageFrames = p => frames.filter(f => f.dataset.pg === p);
+  const visFrames = () => cmp ? cmp.items : pageFrames(curPage);
+  const noteOf = i => notes[i - 1];
+
+  /* ---------- 페이지 탭 ---------- */
+  if (multi) { document.body.classList.add('has-pages'); $('cvPageSec').hidden = false; }
+  function renderPages() {
+    if (!multi) return;
+    $('cvPages').innerHTML = pages.map(p => `<button data-p="${esc(p)}" class="${!cmp && p === curPage ? 'on' : ''}">${esc(p || '기본')}</button>`).join('') +
+      (cmp ? `<button class="cmp" id="cvCmpX">비교: ${esc(cmp.title)} <svg class="ic" style="width:13px;height:13px"><use href="#cv-x"/></svg></button>` : '');
+    requestAnimationFrame(revealTab);
+    $('cvPageList').innerHTML = pages.map(p => `<div class="fx-page ${!cmp && p === curPage ? 'on' : ''}" data-p="${esc(p)}">${esc(p || '기본')}<em>${pageFrames(p).length}</em></div>`).join('');
+  }
+  /* v2.4 탭이 많으면 상단 탭 바를 가로로 넘긴다 — 드래그·휠·현재 탭 자동 노출, 넘친 쪽 가장자리는 흐리게 */
+  function pagesEdge() {
+    const el = $('cvPages'), max = el.scrollWidth - el.clientWidth;
+    el.classList.toggle('ovl', el.scrollLeft > 2); el.classList.toggle('ovr', el.scrollLeft < max - 2);
+  }
+  function revealTab() {
+    const el = $('cvPages'), b = el.querySelector('button.on, button.cmp'); if (!b) { pagesEdge(); return; }
+    const l = b.offsetLeft - 24, r = b.offsetLeft + b.offsetWidth + 24;
+    if (l < el.scrollLeft) el.scrollLeft = l; else if (r > el.scrollLeft + el.clientWidth) el.scrollLeft = r - el.clientWidth;
+    pagesEdge();
+  }
+  (function tabScroller() {
+    const el = $('cvPages'); let sx = 0, sl = 0, down = false, moved = false;
+    el.addEventListener('scroll', pagesEdge, { passive: true });
+    window.addEventListener('resize', pagesEdge);
+    el.addEventListener('wheel', e => {
+      if (el.scrollWidth <= el.clientWidth) return;
+      const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      el.scrollLeft += d; e.preventDefault(); e.stopPropagation();
+    }, { passive: false });
+    el.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      down = true; moved = false; sx = e.clientX; sl = el.scrollLeft;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!down) return;
+      const dx = e.clientX - sx;
+      if (!moved && Math.abs(dx) > 4) { moved = true; el.classList.add('drag'); }
+      if (moved) el.scrollLeft = sl - dx;
+    });
+    window.addEventListener('pointerup', () => {
+      if (!down) return; down = false;
+      if (moved) setTimeout(() => el.classList.remove('drag'), 0);
+    });
+  })();
+  $('cvPages').addEventListener('click', e => {
+    if (e.target.closest('#cvCmpX')) { exitCompare(); return; }
+    const b = e.target.closest('button[data-p]'); if (b) showPage(b.dataset.p);
+  });
+  $('cvPageList').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (b) showPage(b.dataset.p); });
+  function applyVisibility() {
+    holders.forEach(h => h.style.display = (!cmp && h.dataset.pg === curPage) ? '' : 'none');
+    frames.forEach(f => f.style.display = (!cmp && f.dataset.pg === curPage) ? '' : 'none');
+  }
+  function showPage(p, keepView) {
+    if (cmp) removeCompare();
+    curPage = p; select(null); applyVisibility(); renderPages(); renderLayers();
+    if (!keepView) requestAnimationFrame(fitDefault);
+  }
+
+  /* ---------- 레이어 ---------- */
+  const layers = $('cvLayers');
+  function renderLayers() {
+    if (cmp) {
+      $('cvLayerCnt').textContent = cmp.items.length;
+      layers.innerHTML = cmp.cols.map(c => `<div class="fx-group">▾ ${esc(c.p || '기본')}</div>` +
+        (c.fs.length ? c.fs.map(f => `<div class="fx-layer" data-cid="${f.dataset.cid}"><span class="hash">#</span>${esc(f.dataset.name)}</div>`).join('') : '<div class="fx-layer" style="color:#aaa">해당 화면 없음</div>')).join('');
+      return;
+    }
+    const vis = pageFrames(curPage);
+    $('cvLayerCnt').textContent = vis.length;
+    layers.innerHTML = secs.map((sec, si) => (sec.dataset.page || '') !== curPage ? '' :
+      `<div class="fx-group" data-sec="${si}">▾ ${esc(sec.dataset.title || '섹션')}</div>` +
+      frames.filter(f => f.dataset.sec == si).map(f => `<div class="fx-layer" data-id="${f.dataset.id}"><span class="hash">#</span>${esc(f.dataset.name)}</div>`).join('')).join('');
+  }
+  /* ---------- 모바일 하단 시트(v2.2) ---------- */
+  const isNarrow = () => window.matchMedia('(max-width:900px)').matches;
+  function sheet(which) {
+    document.body.classList.toggle('sheet-left', which === 'left');
+    document.body.classList.toggle('sheet-right', which === 'right');
+  }
+  const closeSheet = () => sheet(null);
+  /* 데스크톱 패널 접기(v2.3) — 접은 상태는 보는 사람 브라우저에만 기억(localStorage, 실패해도 무시) */
+  const PANEL_KEY = 'cv-panels';
+  const shown = side => !document.body.classList.contains('hide-' + side);
+  function setPanels(left, right) {
+    const before = vp.getBoundingClientRect().left;
+    document.body.classList.toggle('hide-left', !left);
+    document.body.classList.toggle('hide-right', !right);
+    const after = vp.getBoundingClientRect().left;
+    if (before !== after) { s.x += before - after; apply(false); } // 캔버스 내용이 화면에서 튀지 않게
+    try { localStorage.setItem(PANEL_KEY, JSON.stringify({ left, right })); } catch (e) {}
+  }
+  $('cvBtnLayers').onclick = () => isNarrow() ? sheet(document.body.classList.contains('sheet-left') ? null : 'left') : setPanels(!shown('left'), shown('right'));
+  $('cvBtnInfo').onclick = () => isNarrow() ? sheet(document.body.classList.contains('sheet-right') ? null : 'right') : setPanels(shown('left'), !shown('right'));
+  $('cvScrim').onclick = closeSheet;
+  $('cvPageList').addEventListener('click', () => { if (isNarrow()) closeSheet(); });
+  layers.addEventListener('click', e => {
+    if (isNarrow() && e.target.closest('.fx-layer,.fx-group')) closeSheet();
+    const l = e.target.closest('.fx-layer');
+    if (l && l.dataset.cid) { const c = cmp.items.find(x => x.dataset.cid === l.dataset.cid); fitRect(...bounds([c]), 50); return; }
+    if (l && l.dataset.id) { select(l.dataset.id); fitFrame(l.dataset.id); return; }
+    const g = e.target.closest('.fx-group'); if (g && g.dataset.sec) fitSec(g.dataset.sec);
+  });
+
+  /* ---------- 인스펙터 ---------- */
+  const summary = $('cv-summary') ? $('cv-summary').innerHTML : '';
+  const noteCard = n => `<div class="fx-note" data-i="${n.i}"><div class="t"><span class="n">${n.i}</span>${esc(n.t)}</div><p>${n.b}</p></div>`;
+  const keyPages = key => pages.filter(p => frames.some(f => f.dataset.pg === p && f.dataset.key === key));
+  function inspector() {
+    const el = $('cvInsp');
+    if (cmp) {
+      el.innerHTML = `<div class="fx-sec"><div class="fx-h">비교: ${esc(cmp.title)} <span>${cmp.cols.length}개 페이지</span></div>
+        <p class="fx-desc">같은 화면을 페이지별 열로, 데스크탑/모바일을 행으로 나란히 놓았습니다. <kbd>Esc</kbd> 또는 상단 탭으로 돌아갑니다.</p>
+        <button class="fx-cmpbtn" id="cvCmpClose">비교 닫기</button></div>` +
+        cmp.cols.map(c => `<div class="fx-sec"><div class="fx-colh">${esc(c.p || '기본')} <span style="color:#999;font-weight:500">${c.fs.length ? c.fs.map(f => esc(shortName(f))).join(' · ') : '해당 화면 없음'}</span></div>` +
+          (c.fs.flatMap(f => notes.filter(n => n.f === f.dataset.id)).map(noteCard).join('') || '<p class="fx-desc" style="color:#999">코멘트 없음</p>') + '</div>').join('');
+      $('cvCmpClose').onclick = () => exitCompare();
+    } else if (!selId) {
+      el.innerHTML = `<div class="fx-sec"><div class="fx-h">개요 <span>${multi ? esc(curPage) + ' · ' : ''}프레임 ${pageFrames(curPage).length} · 전체 ${frames.length}</span></div><p class="fx-desc">프레임이나 레이어를 누르면 설계 의도와 코멘트가 이곳에 나옵니다.${multi ? ' 화면을 <b>더블클릭</b>하면 같은 화면의 다른 페이지 버전을 나란히 봅니다.' : ''}</p></div>` + summary;
+    } else {
+      const f = frames.find(x => x.dataset.id === selId);
+      const ns = notes.filter(n => n.f === selId);
+      const kp = f.dataset.key ? keyPages(f.dataset.key) : [];
+      el.innerHTML = `<div class="fx-sec"><div class="fx-h">${esc(f.dataset.name)}</div><div class="fx-kv"><span>W</span><b>${W(f)}</b><span>H</span><b>${H(f)}</b></div>` +
+        (kp.length > 1 ? `<button class="fx-cmpbtn" id="cvCmpOpen">이 화면 비교 보기 — ${kp.map(esc).join(' · ')}</button>` : '') + '</div>' +
+        (f.dataset.desc ? `<div class="fx-sec"><div class="fx-h">설계 의도</div><div class="fx-desc">${esc(f.dataset.desc)}</div></div>` : '') +
+        `<div class="fx-sec"><div class="fx-h">코멘트 <span>${ns.length}</span></div>` + (ns.length ? ns.map(noteCard).join('') : '<p class="fx-desc" style="color:#999">코멘트 없음</p>') + '</div>';
+      if ($('cvCmpOpen')) $('cvCmpOpen').onclick = () => compare(f.dataset.key, f.dataset.id);
+    }
+    el.querySelectorAll('.fx-note').forEach(c => c.addEventListener('click', () => focusNote(+c.dataset.i)));
+  }
+  function select(id) {
+    selId = id;
+    frames.forEach(f => f.classList.toggle('sel', f.dataset.id === id));
+    layers.querySelectorAll('.fx-layer').forEach(l => l.classList.toggle('on', l.dataset.id === id));
+    inspector();
+  }
+  function focusNote(i) {
+    const n = noteOf(i);
+    let host, pin;
+    if (cmp) {
+      host = cmp.items.find(c => c.dataset.src === n.f);
+      if (!host) return;
+      pin = host.querySelector(`.pin[data-i="${i}"]`);
+    } else {
+      if (selId !== n.f) select(n.f);
+      host = frames.find(x => x.dataset.id === n.f); pin = n.el;
+    }
+    document.querySelectorAll('.fx-note').forEach(c => c.classList.toggle('on', +c.dataset.i === i));
+    if (isNarrow()) { sheet('right'); const card = document.querySelector(`#cvInsp .fx-note[data-i="${i}"]`); if (card) card.scrollIntoView({ block: 'nearest' }); return; }
+    fitRect(parseFloat(host.style.left) + n.x - 360, parseFloat(host.style.top) + n.y - 240, 760, 520, 40);
+    if (pin) { pin.classList.remove('pulse'); void pin.offsetWidth; pin.classList.add('pulse'); }
+  }
+
+  /* ---------- 비교 보기: 같은 data-key를 페이지(열) × 기기(행)로 ---------- */
+  function removeCompare() { if (cmp) { cmp.layer.remove(); cmp = null; } }
+  function exitCompare() { removeCompare(); applyVisibility(); renderPages(); renderLayers(); select(null); requestAnimationFrame(fitDefault); }
+  function compare(key, fromId) {
+    if (!key) return;
+    removeCompare();
+    // key를 쓰는 페이지는 모두 열로 둔다 — 그 화면이 없는 페이지는 "화면 없음" 칸으로 보여 준다(예: 현재에 없는 신규 기능)
+    const cols = pages.filter(p => frames.some(f => f.dataset.pg === p && f.dataset.key))
+      .map(p => ({ p, fs: frames.filter(f => f.dataset.pg === p && f.dataset.key === key) }));
+    if (cols.filter(c => c.fs.length).length < 2) return;
+    const rows = [['데스크탑', f => !isMob(f)], ['모바일', isMob]].filter(r => cols.some(c => c.fs.some(r[1])));
+    const colW = cols.map(c => Math.max(...rows.map(r => { const fs = c.fs.filter(r[1]); return fs.length ? fs.reduce((a, f) => a + W(f), 0) + GAP * (fs.length - 1) : 600; })));
+    const rowH = rows.map(r => Math.max(...cols.map(c => { const fs = c.fs.filter(r[1]); return fs.length ? Math.max(...fs.map(H)) : 400; })));
+    const layer = document.createElement('div'); layer.className = 'cv-cmp';
+    const items = [];
+    let x = 0; const colX = cols.map((c, ci) => { const cx = x; x += colW[ci] + CMP_COLGAP; return cx; });
+    cols.forEach((c, ci) => {
+      const a = document.createElement('div'); a.className = 'cv-anchor';
+      Object.assign(a.style, { left: colX[ci] + 'px', top: '0px', width: colW[ci] + 'px' });
+      a.innerHTML = `<div class="cv-coltitle">${esc(c.p || '기본')}</div>`; layer.appendChild(a);
+    });
+    let y = 0, cid = 0;
+    rows.forEach((r, ri) => {
+      const a = document.createElement('div'); a.className = 'cv-anchor';
+      Object.assign(a.style, { left: '0px', top: y + 'px', width: '0px' });
+      a.innerHTML = `<div class="cv-rowlab">${r[0]}</div>`; layer.appendChild(a);
+      cols.forEach((c, ci) => {
+        const fs = c.fs.filter(r[1]);
+        let fx = colX[ci];
+        if (!fs.length) {
+          const ph = document.createElement('div'); ph.className = 'cv-ph';
+          const pw = Math.min(colW[ci], r[0] === '모바일' ? 390 : 900), phh = Math.min(rowH[ri], r[0] === '모바일' ? 844 : 560);
+          Object.assign(ph.style, { left: fx + 'px', top: y + 'px', width: pw + 'px', height: phh + 'px' });
+          ph.innerHTML = `<div>${esc(c.p || '기본')}<small>${r[0]} 화면 없음</small></div>`; layer.appendChild(ph);
+        }
+        fs.forEach(f => {
+          const cl = f.cloneNode(true);
+          cl.classList.remove('sel'); cl.style.display = ''; cl.style.left = fx + 'px'; cl.style.top = y + 'px';
+          cl.dataset.src = f.dataset.id; cl.dataset.cid = 'c' + (cid++); cl.removeAttribute('data-id');
+          layer.appendChild(cl); items.push(cl); fx += W(f) + GAP;
+        });
+      });
+      y += rowH[ri] + SEC_GAP;
+    });
+    const src0 = frames.find(f => f.dataset.id === fromId) || cols.find(c => c.fs.length).fs[0];
+    cmp = { key, layer, items, cols, title: shortName(src0) || key };
+    world.appendChild(layer);
+    selId = null; frames.forEach(f => f.classList.remove('sel'));
+    applyVisibility(); renderPages(); renderLayers(); inspector();
+    cmp.fit = () => { const [bx, by, bw, bh] = bounds(items.concat([...layer.querySelectorAll('.cv-ph')]), 110); fitRect(bx - 260, by, bw + 260, bh, 40); };
+    requestAnimationFrame(cmp.fit);
+  }
+
+  /* ---------- 팬/줌 ---------- */
+  const s = { x: 0, y: 0, k: .3 };
+  function apply(anim) {
+    world.classList.toggle('anim', !!anim);
+    world.style.transform = `translate(${s.x}px,${s.y}px) scale(${s.k})`;
+    world.style.setProperty('--inv', (1 / s.k).toFixed(3));
+    world.classList.toggle('tiny', s.k < 0.13);
+    $('cvZLbl').textContent = Math.round(s.k * 100) + '%';
+  }
+  function fitRect(x, y, w, h, pad = 60, maxK = 1.5) {
+    const vw = vp.clientWidth, vh = vp.clientHeight;
+    s.k = Math.max(.02, Math.min((vw - pad * 2) / w, (vh - pad * 2) / h, maxK));
+    s.x = (vw - w * s.k) / 2 - x * s.k; s.y = (vh - h * s.k) / 2 - y * s.k; apply(true);
+  }
+  function bounds(list, top = 40) {
+    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+    list.forEach(f => { const x = parseFloat(f.style.left), y = parseFloat(f.style.top);
+      x1 = Math.min(x1, x); y1 = Math.min(y1, y); x2 = Math.max(x2, x + parseFloat(f.style.width)); y2 = Math.max(y2, y + parseFloat(f.style.height)); });
+    return [x1, y1 - top, x2 - x1, y2 - y1 + top];
+  }
+  const fitAll = () => { if (cmp) return cmp.fit(); const v = visFrames(); if (v.length) fitRect(...bounds(v), 40); };
+  const fitFrame = (id, pad = 50) => fitRect(...bounds([frames.find(f => f.dataset.id === id)]), pad);
+  const fitSec = si => fitRect(...bounds(frames.filter(f => f.dataset.sec == si)), 40);
+  function fitDefault() {
+    if (cmp) return fitAll();
+    const v = pageFrames(curPage);
+    if (v.length > 12) fitSec(v[0].dataset.sec); else fitAll();
+  }
+  function zoomAt(mx, my, nk) { nk = Math.max(.02, Math.min(4, nk)); s.x = mx - (mx - s.x) * nk / s.k; s.y = my - (my - s.y) * nk / s.k; s.k = nk; apply(false); }
+  vp.addEventListener('wheel', e => {
+    e.preventDefault(); const r = vp.getBoundingClientRect();
+    if (e.ctrlKey || e.metaKey) zoomAt(e.clientX - r.left, e.clientY - r.top, s.k * Math.exp(-e.deltaY * .0025));
+    else if (e.shiftKey && !e.deltaX) { s.x -= e.deltaY; apply(false); }
+    else { s.x -= e.deltaX; s.y -= e.deltaY; apply(false); }
+  }, { passive: false });
+  let down = null, pinch = null; const ptrs = new Map(); const CV = window.CV = { moved: false };
+  vp.addEventListener('pointerdown', e => {
+    if (e.button > 1) return;
+    ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (ptrs.size === 2) { // 두 손가락 — 핀치 확대·축소 + 이동
+      const [a, b] = [...ptrs.values()];
+      pinch = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, k: s.k, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2, sx: s.x, sy: s.y };
+      down = null; CV.moved = true; return;
+    }
+    down = { x: e.clientX, y: e.clientY, sx: s.x, sy: s.y }; CV.moved = false;
+  });
+  window.addEventListener('pointermove', e => {
+    if (ptrs.has(e.pointerId)) ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pinch && ptrs.size >= 2) {
+      const [a, b] = [...ptrs.values()], r = vp.getBoundingClientRect();
+      const nk = Math.max(.02, Math.min(4, pinch.k * Math.hypot(a.x - b.x, a.y - b.y) / pinch.d));
+      const px = pinch.mx - r.left, py = pinch.my - r.top;
+      s.k = nk; s.x = px - (px - pinch.sx) * nk / pinch.k + ((a.x + b.x) / 2 - pinch.mx); s.y = py - (py - pinch.sy) * nk / pinch.k + ((a.y + b.y) / 2 - pinch.my);
+      apply(false); return;
+    }
+    if (!down) return; const dx = e.clientX - down.x, dy = e.clientY - down.y;
+    if (!CV.moved && Math.hypot(dx, dy) > 6) { CV.moved = true; vp.classList.add('drag'); }
+    if (CV.moved) { s.x = down.sx + dx; s.y = down.sy + dy; apply(false); }
+  });
+  const ptrUp = e => {
+    ptrs.delete(e.pointerId);
+    if (ptrs.size < 2) pinch = null;
+    if (!ptrs.size) { down = null; vp.classList.remove('drag'); setTimeout(() => CV.moved = false, 0); }
+  };
+  window.addEventListener('pointerup', ptrUp);
+  window.addEventListener('pointercancel', ptrUp);
+  // 터치 기기에서는 dblclick 이 오지 않거나 확대로 먹히므로 두 번 탭을 직접 판정한다.
+  const coarse = window.matchMedia('(pointer:coarse)').matches;
+  let lastTap = { t: 0, f: null };
+  vp.addEventListener('click', e => {
+    if (CV.moved) return;
+    if (coarse) {
+      const f0 = e.target.closest('.frame'), now = Date.now();
+      if (f0 && lastTap.f === f0 && now - lastTap.t < 350) { lastTap = { t: 0, f: null }; onDouble(f0); return; }
+      lastTap = { t: now, f: f0 };
+    }
+    const pin = e.target.closest('.pin'); if (pin) { focusNote(+pin.dataset.i); return; }
+    if (cmp) return;
+    const f = e.target.closest('.frame'); if (f) { if (selId !== f.dataset.id) select(f.dataset.id); } else select(null);
+  });
+  vp.addEventListener('dblclick', e => { const f = e.target.closest('.frame'); if (f) onDouble(f); });
+  function onDouble(f) {
+    if (cmp) { fitRect(...bounds([f]), 50); return; }
+    if (multi && f.dataset.key && keyPages(f.dataset.key).length > 1) compare(f.dataset.key, f.dataset.id);
+    else fitFrame(f.dataset.id);
+  }
+  const zc = () => [vp.clientWidth / 2, vp.clientHeight / 2];
+  $('cvZIn').onclick = () => zoomAt(...zc(), s.k * 1.25);
+  $('cvZOut').onclick = () => zoomAt(...zc(), s.k / 1.25);
+  $('cvHudFit').onclick = $('cvBtnFit').onclick = fitAll;
+  $('cvHud100').onclick = () => zoomAt(...zc(), 1);
+  let pinsOn = true;
+  $('cvBtnPins').onclick = e => { pinsOn = !pinsOn; e.currentTarget.classList.toggle('on', !pinsOn); world.querySelectorAll('.pin').forEach(p => p.style.display = pinsOn ? '' : 'none'); };
+
+  /* ---------- 발표 (현재 페이지 또는 비교 화면 순회) ---------- */
+  let pIdx = 0;
+  function present(i) {
+    const v = visFrames(); if (!v.length) return;
+    pIdx = (i + v.length) % v.length;
+    $('cvPLbl').textContent = `${pIdx + 1} / ${v.length} · ${v[pIdx].dataset.name}`;
+    frames.forEach(f => f.classList.toggle('pcur', f === v[pIdx])); /* v2.4 발표 중에는 현재 프레임만 — 이웃 프레임이 위아래로 비치지 않게 */
+    requestAnimationFrame(() => fitRect(...bounds([v[pIdx]]), 30));
+  }
+  $('cvBtnPresent').onclick = () => { closeSheet(); document.body.classList.add('present'); const v = visFrames(); present(Math.max(0, v.findIndex(f => f.dataset.id === selId))); };
+  $('cvPPrev').onclick = () => present(pIdx - 1);
+  $('cvPNext').onclick = () => present(pIdx + 1);
+  $('cvPExit').onclick = () => { document.body.classList.remove('present'); frames.forEach(f => f.classList.remove('pcur')); requestAnimationFrame(fitDefault); };
+  window.addEventListener('keydown', e => {
+    const pr = document.body.classList.contains('present');
+    if (pr && (e.key === 'ArrowRight' || e.key === ' ')) { e.preventDefault(); present(pIdx + 1); }
+    else if (pr && e.key === 'ArrowLeft') present(pIdx - 1);
+    else if ((e.ctrlKey || e.metaKey) && e.key === '\\') { e.preventDefault(); const any = shown('left') || shown('right'); setPanels(!any, !any); }
+    else if (e.key === 'Escape') { if (pr) $('cvPExit').click(); else if (cmp) exitCompare(); else select(null); }
+    else if (e.shiftKey && e.code === 'Digit1') fitAll();
+    else if (e.shiftKey && e.code === 'Digit2' && selId) fitFrame(selId);
+    else if ((e.key === '+' || e.key === '=') && !e.ctrlKey) zoomAt(...zc(), s.k * 1.25);
+    else if (e.key === '-' && !e.ctrlKey) zoomAt(...zc(), s.k / 1.25);
+  });
+  window.addEventListener('resize', () => { if (document.body.classList.contains('present')) present(pIdx); });
+
+  Object.assign(CV, { frames, notes, pages, select, fitAll, fitFrame, fitRect, fitSec, showPage, compare, exitCompare, state: s, apply });
+  Object.defineProperty(CV, 'cmp', { get: () => cmp });
+  try { const p = JSON.parse(localStorage.getItem(PANEL_KEY) || 'null'); if (p) { document.body.classList.toggle('hide-left', p.left === false); document.body.classList.toggle('hide-right', p.right === false); } } catch (e) {}
+  applyVisibility(); renderPages(); renderLayers(); inspector();
+  // 처음 맞춤 때 캔버스 크기가 0이면(숨은 iframe·좁은 창 전환 등) 크기가 생기는 순간 한 번 더 맞춘다(v2.2).
+  let fitted = false;
+  const firstFit = () => { if (vp.clientWidth > 0 && vp.clientHeight > 0) { fitted = true; fitDefault(); } };
+  requestAnimationFrame(firstFit);
+  if (window.ResizeObserver) new ResizeObserver(() => { if (!fitted) firstFit(); }).observe(vp);
+})();
+</script>
+</body>
+</html>
